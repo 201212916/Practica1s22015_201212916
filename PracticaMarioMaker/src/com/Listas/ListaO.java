@@ -1,43 +1,45 @@
 package com.Listas;
+
 import com.Nodos.*;
 
 public class ListaO {
-	
+
 	public NodoO primero;
-	public NodoO ultimo; 
+	public NodoO ultimo;
 	public NodoO arriba;
 	public NodoO abajo;
 	public NodoO raiz;
-	
-	public ListaO(){
+
+	public ListaO() {
 		this.primero = null;
 		this.ultimo = null;
 		this.arriba = null;
 		this.abajo = null;
-		
+
 		this.raiz = new NodoO();
 	}
-	
-	public boolean esVacioFila(){
-		return this.raiz.getAbajo() == null ? true : false ; 
+
+	public boolean esVacioFila() {
+		return this.raiz.getAbajo() == null ? true : false;
 	}
-	
-	public boolean esVacioColumna(){
-		return this.raiz.getSiguiente() == null ? true : false ; 
+
+	public boolean esVacioColumna() {
+		return this.raiz.getSiguiente() == null ? true : false;
 	}
-	
-	public String verVacioFila(){
+
+	public String verVacioFila() {
 		return esVacioFila() ? "Esta vacio fila" : "No esta vacio fila";
 	}
 
-	public String verVacioColumna(){
-		return esVacioColumna() ? "Esta vacio columna" : "No esta vacio columna";
+	public String verVacioColumna() {
+		return esVacioColumna() ? "Esta vacio columna"
+				: "No esta vacio columna";
 	}
-	
-	public void agregarFila(Object dato){
-		
-		NodoO nodo = new NodoO(dato);
-		
+
+	public void agregarFila() {
+
+		NodoO nodo = new NodoO();
+
 		try {
 			if (esVacioFila()) {
 				raiz.setAbajo(nodo);
@@ -48,19 +50,17 @@ public class ListaO {
 				abajo = nodo;
 			}
 
-			System.out.println("Se agrego un elemento a la fila '" + dato + "' a la lista");
-			
-
 		} catch (Exception e) {
-			System.out.println("Ha ocurrido un error al momento de ingresar el elemento a la fila ERROR: " + e);
+			System.out
+					.println("Ha ocurrido un error al momento de ingresar el elemento a la fila ERROR: "
+							+ e);
 		}
 	}
 
-	
-	public void agregarColumna(Object dato){
-		
-		NodoO nodo = new NodoO(dato);
-		
+	public void agregarColumna() {
+
+		NodoO nodo = new NodoO();
+
 		try {
 			if (esVacioColumna()) {
 				raiz.setSiguiente(nodo);
@@ -68,51 +68,49 @@ public class ListaO {
 				ultimo = nodo;
 			} else {
 				ultimo.setSiguiente(nodo);
-				ultimo= nodo;
+				ultimo = nodo;
 			}
 
-			System.out.println("Se agrego un elemento a la columna: '" + dato + "' a la lista");
-			
-
 		} catch (Exception e) {
-			System.out.println("Ha ocurrido un error al momento de ingresar el elemento a la columna ERROR: " + e);
+			System.out
+					.println("Ha ocurrido un error al momento de ingresar el elemento a la columna ERROR: "
+							+ e);
 		}
 	}
-	
-	public int getNumFilas(){
-		
+
+	public int getNumFilas() {
+
 		NodoO temporal;
 		int contador = 0;
 
-		
-		temporal = raiz.getAbajo();
-		while (temporal!=null){
+		temporal = raiz;
+		while (temporal != null) {
 			temporal = temporal.getAbajo();
 			contador++;
 		}
-		
+
 		return contador;
 	}
-	
-	public int getNumColumnas(){
-		
+
+	public int getNumColumnas() {
+
 		NodoO temporal = new NodoO();
 		int contador = 0;
-		
-		temporal = raiz.getSiguiente();
-		while (temporal!=null){
+
+		temporal = raiz;
+		while (temporal != null) {
 			temporal = temporal.getSiguiente();
 			contador++;
 		}
 		return contador;
 	}
-	
-	public NodoO getNodoFila(int indice){
+
+	public NodoO getNodoFila(int indice) {
 		NodoO temporal;
 
 		if (!esVacioFila()) {
 			temporal = raiz;
-			for (int i = 1; i <=indice; i++) {
+			for (int i = 1; i <= indice; i++) {
 				temporal = temporal.getAbajo();
 			}
 			return temporal;
@@ -120,33 +118,132 @@ public class ListaO {
 			return null;
 		}
 	}
-	
-	public NodoO getNodoColumna(int indice){
-		NodoO temporal;
 
-		if (!esVacioColumna()) {
-			temporal = raiz;
-			for (int i = 1; i <=indice; i++) {
-				temporal = temporal.getSiguiente();
+	public NodoO getNodoColumna(int indice) {
+		try {
+			NodoO temporal;
+			if (!esVacioColumna()) {
+				temporal = this.raiz;
+				for (int i = 1; i <= indice; i++) {
+					temporal = temporal.getSiguiente();
+				}
+				return temporal;
+			} else {
+				return null;
 			}
-			return temporal;
-		} else {
+		} catch (Exception e) {
+			System.out.println("Error en metodo getNodoColumna" + e);
 			return null;
 		}
 	}
-	
-	public void llenarMatriz(){
-	
-		for(int i = 1; i <=getNumFilas() ; i++){
-			NodoO nodoF = new NodoO();
-			for (int j = 1; j <= getNumColumnas(); j++){
-				NodoO nodoC = new NodoO();
+
+	public NodoO buscarNodo(int fila, int columna) {
+		
+		try {
+			if (!esVacioColumna() && !esVacioFila()) {				
+				NodoO temporal = this.getNodoFila(fila);	
+				int contador=0;
 				
+				while(contador!=columna){
+					temporal = temporal.getSiguiente();	
+					contador++;
+				}
+				return temporal;
+			} else {
+				return null;
 			}
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public void insertarDato(Object dato, int fila, int columna) {
+		NodoO nodo = new NodoO();
+		nodo = this.buscarNodo(fila, columna);
+		nodo.setDato(dato);
+	}
+
+	public void llenarMatriz() {
+
+		try {
+			if (!esVacioFila() || !esVacioColumna()) {
+
+				for (int i = 1; i < getNumFilas(); i++) {
+					
+					NodoO nodoF = this.getNodoFila(i);
+					NodoO temporal = nodoF;
+
+					for (int j = 1; j < getNumColumnas(); j++) {
+						
+						NodoO nodoC = this.getNodoColumna(j);
+
+						NodoO nuevo = new NodoO(i+"_" + j);
+
+						nuevo.setArriba(nodoC);						
+						nodoC.setAbajo(nuevo);
+
+						nuevo.setAnterior(temporal);
+						temporal.setSiguiente(nuevo);
+						
+						temporal = nuevo;
+					}
+				}
+			} else {
+				System.out.println("No se encuentra fila o columna a llenar");
+			}
+		} catch (Exception e) {
+			System.out.println("Hubo error al llenar matriz " + e);
 		}
 	}
 	
-	//matriz de 2x4
+	public void dibujarMatriz(){
+		
+		NodoO temporalc = raiz.getSiguiente();
+		NodoO temporalf = raiz.getAbajo();
 	
+		int contadorf = 1;
+		int contadorc = 1;
+		//System.out.print("| i |");
+		
+		
+		while(temporalc != null){
+			//System.out.print( temporalc.getDato() + " |");
+			temporalc = temporalc.getSiguiente();
+			contadorc++;
+		}
+		
+		System.out.println();
+		
+		while(temporalf != null){
+			//System.out.println( "| " + temporalf.getDato() + " |");
+			temporalf = temporalf.getAbajo();
+			contadorf++;
+		}
+
+		
+		for (int i = 1; i<contadorf; i++){
+			for (int j = 1; j<contadorc; j++){
+				System.out.print("| " + this.buscarNodo(i, j).getDato() + " ");
+				System.out.print("fila " + i + " columna " + j);	
+			}
+			System.out.println();
+		}
+		
+	}
 	
+	//crea una matriz de 2x4
+	public void iniciarMatriz(){
+		
+		for (int i = 0; i<2; i++){
+			this.agregarFila();
+		}
+		
+		for (int i = 0; i<4; i++){
+			this.agregarColumna();
+		}
+		
+		this.llenarMatriz();
+	}
+
 }
