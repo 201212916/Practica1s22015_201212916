@@ -36,9 +36,9 @@ public class ListaO {
 				: "No esta vacio columna";
 	}
 
-	public void agregarFila() {
+	public void agregarFilaI(Object dato) {
 
-		NodoO nodo = new NodoO();
+		NodoO nodo = new NodoO(dato);
 
 		try {
 			if (esVacioFila()) {
@@ -57,9 +57,9 @@ public class ListaO {
 		}
 	}
 
-	public void agregarColumna() {
+	public void agregarColumnaI(Object dato) {
 
-		NodoO nodo = new NodoO();
+		NodoO nodo = new NodoO("*" + dato + "*");
 
 		try {
 			if (esVacioColumna()) {
@@ -106,7 +106,7 @@ public class ListaO {
 	}
 
 	public NodoO getNodoFila(int indice) {
-		NodoO temporal;
+		NodoO temporal = new NodoO();
 
 		if (!esVacioFila()) {
 			temporal = raiz;
@@ -204,11 +204,11 @@ public class ListaO {
 	
 		int contadorf = 1;
 		int contadorc = 1;
-		//System.out.print("| i |");
+		System.out.print("| i |");
 		
 		
 		while(temporalc != null){
-			//System.out.print( temporalc.getDato() + " |");
+			System.out.print( temporalc.getDato() + " |");
 			temporalc = temporalc.getSiguiente();
 			contadorc++;
 		}
@@ -216,7 +216,7 @@ public class ListaO {
 		System.out.println();
 		
 		while(temporalf != null){
-			//System.out.println( "| " + temporalf.getDato() + " |");
+			System.out.println( "| " + temporalf.getDato() + " |");
 			temporalf = temporalf.getAbajo();
 			contadorf++;
 		}
@@ -235,15 +235,67 @@ public class ListaO {
 	//crea una matriz de 2x4
 	public void iniciarMatriz(){
 		
-		for (int i = 0; i<2; i++){
-			this.agregarFila();
+		for (int i = 1; i<=2; i++){
+			this.agregarFilaI(i);
 		}
 		
-		for (int i = 0; i<4; i++){
-			this.agregarColumna();
+		for (int i = 1; i<=4; i++){
+			this.agregarColumnaI(i);
 		}
 		
 		this.llenarMatriz();
+	}
+
+	public void agregarFila(){
+		
+		int limite = getNumFilas();			
+		this.agregarFilaI(limite);
+
+		NodoO nodo = this.getNodoFila(limite);
+		
+		for (int j = 1; j < getNumColumnas(); j++) {
+			
+			NodoO nodoC = this.getNodoColumna(j);
+
+			NodoO nuevo = new NodoO(limite+"_" + j);
+
+			nuevo.setArriba(nodoC);						
+			nodoC.setAbajo(nuevo);
+
+			nuevo.setAnterior(nodo);
+			nodo.setSiguiente(nuevo);
+			
+			nodo = nuevo;
+		}
+		
+		this.dibujarMatriz();
+	}
+	
+	public void agregarColumna(){
+
+		int limite = getNumColumnas();
+		this.agregarColumnaI(limite);
+	
+		NodoO nodo = this.getNodoColumna(limite);
+		
+
+		for (int i = 1; i < getNumFilas(); i++) {
+			
+			NodoO nodoF = this.buscarNodo(i, limite-1);
+			
+			NodoO nuevo = new NodoO(i+"_" + limite);
+
+				nuevo.setArriba(nodo);						
+				nodo.setAbajo(nuevo);
+
+				nuevo.setAnterior(nodoF);
+				nodoF.setSiguiente(nuevo);
+			
+		}
+		
+		this.dibujarMatriz();
+		
+		
 	}
 
 }

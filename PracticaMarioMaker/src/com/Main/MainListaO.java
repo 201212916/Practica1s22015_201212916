@@ -11,6 +11,12 @@ public class MainListaO {
 		o.iniciarMatriz();
 		
 		o.dibujarMatriz();
+		
+		o.agregarFila();
+		
+		
+		o.agregarColumna();
+		
 	}
 	
 
