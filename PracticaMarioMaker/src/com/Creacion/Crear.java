@@ -25,7 +25,7 @@ public class Crear extends JPanel implements ActionListener {
 		addKeyListener(new teclado());
 		personaje = new O_Personaje();
 		goomba = new O_Goomba();
-		timer = new Timer(5, this);
+		timer = new Timer(100, this);
 		timer.start();
 	}
 	
@@ -34,6 +34,14 @@ public class Crear extends JPanel implements ActionListener {
 		
 		Graphics2D gr2 = (Graphics2D) grafico;
 		gr2.drawImage(personaje.getImagen(), personaje.getX(), personaje.getY(), null);
+		
+		
+		int ancho = 79, alto = 82; 
+		for(int i = 1; i <= 10; i++){ 
+		grafico.drawLine(79, i * alto, getSize().width - 100, i * alto); 
+		grafico.drawLine(i * ancho, 79, i * ancho, getSize().height - 100); 
+		} 
+		
 		
 	}
 	

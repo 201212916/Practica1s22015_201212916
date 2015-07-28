@@ -276,26 +276,26 @@ public class ListaO {
 			NodoO temporalc = raiz.getSiguiente();
 			NodoO temporalf = raiz.getAbajo();
 			
-			/*
-			 * int contadorf = 1; 
-			 * int contadorc = 1; 
-			 * System.out.print("| i |");
-			 *
-			 * //Se sustituye por los metodos getnumfilas y getnumcolumnas
-			 * while(temporalc != null){
-			 * 		System.out.print( temporalc.getDato() + " |"); 
-			 * 		temporalc = temporalc.getSiguiente(); 
-			 * 		contadorc++; 
-			 * }
-			 * 
-			 * System.out.println();
-			 * 
-			 * while(temporalf != null){ 
-			 * 		System.out.println( "| " +	temporalf.getDato() + " |"); 
-			 * 		temporalf = temporalf.getAbajo();
-			 * 		contadorf++; 
-			 * }
-			 */
+			
+			  int contadorf = 1; 
+			  int contadorc = 1; 
+			  System.out.print("| i |");
+			 
+			  //Se sustituye por los metodos getnumfilas y getnumcolumnas
+			  while(temporalc != null){
+			  		System.out.print( temporalc.getDato() + " |"); 
+			 		temporalc = temporalc.getSiguiente(); 
+			  		contadorc++; 
+			 }
+			  
+			  System.out.println();
+			  
+			  while(temporalf != null){ 
+			  		System.out.println( "| " +	temporalf.getDato() + " |"); 
+			  		temporalf = temporalf.getAbajo();
+			  		contadorf++; 
+			  }
+			 
 
 			for (int i = 1; i < this.getNumFilas(); i++) {
 				for (int j = 1; j < this.getNumColumnas(); j++) {

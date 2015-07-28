@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-import com.Imagenes.*;
 
 public class O_Personaje {
 
@@ -14,8 +13,8 @@ public class O_Personaje {
 	private Image imagen;
 	
 	public O_Personaje(){
-		this.x = 50;
-		this.y = 60;
+		this.x = 79;
+		this.y = 79;
 		ImageIcon image = new ImageIcon(this.getClass().getResource(personaje));
 		imagen = image.getImage();
 		
@@ -43,19 +42,19 @@ public class O_Personaje {
 		int key = e.getKeyCode();
 		
 		if(key == KeyEvent.VK_LEFT){
-			this.dx = -1;
+			this.dx = -79;
 		}
 		
 		if(key == KeyEvent.VK_RIGHT){
-			this.dx = 1;
+			this.dx = 79;
 		}
 		
 		if(key == KeyEvent.VK_UP){
-			this.dy = -1;
+			this.dy = -82;
 		}
 		
 		if(key == KeyEvent.VK_DOWN){
-			this.dy = 1;
+			this.dy = 82;
 		}
 	}
 	

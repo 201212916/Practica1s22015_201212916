@@ -16,7 +16,7 @@ public class MainListaO {
 		
 		o.agregarColumna();
 		
-		//new MenuMaker(); //llamada a la clase menu maker que crea la ventana inicial
+		new MenuMaker(); //llamada a la clase menu maker que crea la ventana inicial
 		
 		//o.insertarDato("qwerty", 3, 5);
 		
@@ -26,12 +26,13 @@ public class MainListaO {
 
 		//o.dibujarMatriz();
 		
-		o.eliminarFila();
+		//Escenario d = new Escenario();
 		
-		//o.eliminarColumna();
-		
-
-		o.insertarDato("*_*", 3, 5);
+          
+		//d.show();
+                
+                
+		//o.insertarDato("*_*", 3, 5);
 
 		
 		
