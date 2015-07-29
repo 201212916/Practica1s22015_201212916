@@ -1,5 +1,5 @@
 package com.Listas;
-
+import com.Main.*;
 import com.Nodos.*;
 
 public class ListaO {
@@ -9,6 +9,9 @@ public class ListaO {
 	public NodoO arriba;
 	public NodoO abajo;
 	public NodoO raiz;
+	
+	private static int dibFila=2, dibColumna=4, limitefila=150, limiteColumna=50;
+	
 
 	public ListaO() {
 		this.primero = null;
@@ -17,6 +20,7 @@ public class ListaO {
 		this.abajo = null;
 
 		this.raiz = new NodoO();
+		
 	}
 
 	public boolean esVacioFila() {
@@ -81,7 +85,6 @@ public class ListaO {
 		}
 	}
 
-	
 	public int getNumFilas() {
 		int contador = 0;
 		try{
@@ -99,7 +102,6 @@ public class ListaO {
 		
 	}
 
-	
 	public int getNumColumnas() {
 		int contador = 0;
 		
@@ -118,7 +120,6 @@ public class ListaO {
 		
 	}
 
-	
 	public void eliminarFila(){
 		
 		try{
@@ -185,7 +186,6 @@ public class ListaO {
 		
 	}
 
-	
 	public NodoO getNodoColumna(int indice) {
 		try {
 			NodoO temporal;
@@ -204,7 +204,6 @@ public class ListaO {
 		}
 	}
 
-	
 	public NodoO buscarNodo(int fila, int columna) {
 		try {
 			if (!esVacioColumna() && !esVacioFila()) {
@@ -225,7 +224,6 @@ public class ListaO {
 
 	}
 
-	
 	public void insertarDato(Object dato, int fila, int columna) {
 		try {
 			NodoO nodo = new NodoO();
@@ -236,7 +234,6 @@ public class ListaO {
 		}
 
 	}
-
 	
 	public void llenarMatriz() {
 		try {
@@ -269,7 +266,6 @@ public class ListaO {
 			System.out.println("Error en metodo llenarMatriz() " + e);
 		}
 	}
-
 	
 	public void dibujarMatriz() {
 		try{
@@ -331,6 +327,8 @@ public class ListaO {
 	}
 
 	public void agregarFila() {
+		
+		
 		try{
 
 			int limite = getNumFilas();
@@ -353,6 +351,8 @@ public class ListaO {
 				nodo = nuevo;
 			}
 
+			this.dibFila++;
+			this.limiteColumna += 50;
 			this.dibujarMatriz();
 
 		}catch(Exception e){
@@ -362,7 +362,7 @@ public class ListaO {
 	}
 
 	public void agregarColumna() {
-		
+	
 		try{
 			int limite = getNumColumnas();
 			this.agregarColumnaI(limite);
@@ -381,6 +381,9 @@ public class ListaO {
 				nuevo.setAnterior(nodoF);
 				nodoF.setSiguiente(nuevo);
 			}
+			
+			this.dibColumna++;
+			this.limitefila += 50;
 			this.dibujarMatriz();
 			
 		}catch(Exception e){
@@ -389,5 +392,40 @@ public class ListaO {
 		
 
 	}
+	/*Getters and Setters */
+
+	public int getDibFila() {
+		return dibFila;
+	}
+
+	public void setDibFila(int dibFila) {
+		this.dibFila = dibFila;
+	}
+
+	public int getDibColumna() {
+		return dibColumna;
+	}
+
+	public void setDibColumna(int divColumna) {
+		this.dibColumna = divColumna;
+	}
+
+	public int getLimitefila() {
+		return limitefila;
+	}
+
+	public void setLimitefila(int limitefila) {
+		ListaO.limitefila = limitefila;
+	}
+
+	public int getLimiteColumna() {
+		return limiteColumna;
+	}
+
+	public void setLimiteColumna(int limiteColumna) {
+		ListaO.limiteColumna = limiteColumna;
+	}
+
+
 
 }

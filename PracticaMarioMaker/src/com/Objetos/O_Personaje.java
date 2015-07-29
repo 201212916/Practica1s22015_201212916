@@ -1,4 +1,6 @@
 package com.Objetos;
+import com.Listas.*;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -7,22 +9,36 @@ import javax.swing.*;
 public class O_Personaje {
 
 	private String personaje = "/com/Imagenes/mario.png";
-	
-	private int dx, dy, x, y;
-		
+	private static int dx, dy, x=50, y=50;
 	private Image imagen;
-	
+	private ListaO o;
+
+
 	public O_Personaje(){
-		this.x = 79;
-		this.y = 79;
+		o  = new ListaO();
+
+		x= this.getX();
+		y = this.getY();
+		
 		ImageIcon image = new ImageIcon(this.getClass().getResource(personaje));
 		imagen = image.getImage();
 		
 	}
-	
+
 	public void mover(){
-		this.x += dx;
-		this.y += dy;
+
+		if (this.x>=100 || this.dx>0){
+			if (this.x <=o.getLimitefila() || this.dx<0){
+					this.x += this.dx;
+			}
+		}
+
+		if (this.y>=100 || this.dy>0){		
+			if (this.y <= o.getLimiteColumna() || this.dy<0){
+				this.y += this.dy;
+			}
+		}
+
 	}
 
 	public int getX() {
@@ -31,6 +47,14 @@ public class O_Personaje {
 
 	public int getY() {
 		return y;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public Image getImagen() {
@@ -42,19 +66,19 @@ public class O_Personaje {
 		int key = e.getKeyCode();
 		
 		if(key == KeyEvent.VK_LEFT){
-			this.dx = -79;
+			this.dx = -50;
 		}
 		
 		if(key == KeyEvent.VK_RIGHT){
-			this.dx = 79;
+			this.dx = 50;
 		}
 		
 		if(key == KeyEvent.VK_UP){
-			this.dy = -82;
+			this.dy = -50;
 		}
 		
 		if(key == KeyEvent.VK_DOWN){
-			this.dy = 82;
+			this.dy = 50;
 		}
 	}
 	
@@ -78,4 +102,10 @@ public class O_Personaje {
 			this.dy = 0;
 		}
 	}
+
+
+	
+	
+	
+
 }

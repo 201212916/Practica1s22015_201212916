@@ -3,20 +3,27 @@ import com.Listas.*;
 
 public class MainListaO {
 	
+	MenuMaker m;
+	//ListaO o;
+	public MainListaO(){
+
 	
-	public static void main(String [] args){
 		
-		ListaO o = new ListaO();
+		//o = new ListaO();
+
+		//o.iniciarMatriz();
 		
-		o.iniciarMatriz();
+	
 		
-		o.dibujarMatriz();
+		//o.dibujarMatriz();
 		
-		o.agregarFila();
+		//o.agregarFila();
+
+		//o.agregarColumna();
 		
-		o.agregarColumna();
+		//o.agregarColumna();		o.agregarColumna();		o.agregarColumna();
+
 		
-		new MenuMaker(); //llamada a la clase menu maker que crea la ventana inicial
 		
 		//o.insertarDato("qwerty", 3, 5);
 		
@@ -34,9 +41,9 @@ public class MainListaO {
                 
 		//o.insertarDato("*_*", 3, 5);
 
-		
-		
+		m = new MenuMaker(); //llamada a la clase menu maker que crea la ventana inicial
+			
 	}
-	
+
 
 }

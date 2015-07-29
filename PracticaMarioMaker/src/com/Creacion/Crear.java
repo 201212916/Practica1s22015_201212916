@@ -12,11 +12,14 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.Listas.*;
 public class Crear extends JPanel implements ActionListener {
 	
 	private O_Personaje personaje;
 	private O_Goomba goomba;
 	private Timer timer;
+	private ListaO listao;
+
 	
 	public Crear(){
 		
@@ -24,10 +27,15 @@ public class Crear extends JPanel implements ActionListener {
 		setFocusable(true);
 		addKeyListener(new teclado());
 		personaje = new O_Personaje();
+		
 		goomba = new O_Goomba();
 		timer = new Timer(100, this);
 		timer.start();
+		listao = new ListaO();
+
 	}
+
+
 	
 	public void paint(Graphics grafico){
 		super.paint(grafico);
@@ -36,13 +44,19 @@ public class Crear extends JPanel implements ActionListener {
 		gr2.drawImage(personaje.getImagen(), personaje.getX(), personaje.getY(), null);
 		
 		
-		int ancho = 79, alto = 82; 
-		for(int i = 1; i <= 10; i++){ 
-		grafico.drawLine(79, i * alto, getSize().width - 100, i * alto); 
-		grafico.drawLine(i * ancho, 79, i * ancho, getSize().height - 100); 
+		/* creacion de tablero */
+		
+		int fila = listao.getDibFila() + 1 ;
+		int columna = listao.getDibColumna() +1;
+		int ancho = 50, alto = 50;
+		
+		for(int i = 1; i <= fila; i++){ 
+			grafico.drawLine(50, i * alto, (columna * 50), i * alto); // linea horizontal 
 		} 
 		
-		
+		for(int i = 1; i <= columna; i++){ 
+			grafico.drawLine(i * ancho, 50, i * ancho, (fila *50) ); // linea vertical
+		} 
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -50,6 +64,9 @@ public class Crear extends JPanel implements ActionListener {
 		//this.goomba.mover();
 		this.repaint();
 	}
+	
+	
+
 	
 	private class teclado extends KeyAdapter{
 		
@@ -64,4 +81,28 @@ public class Crear extends JPanel implements ActionListener {
 		}
 	}
 
+	/*
+	public void setearPosicionImagen(int x, int y){
+		
+		//inicial es x = 50 y x = 75 por el momento
+		int xf = x/50;
+		int yf = (y-25)/50;
+		if (x>=50){
+			this.posicionX = xf*50;
+			//this.setPosicionX(xf*50);
+			System.out.println("Posicion x " + xf);
+		}
+		
+		if (y>=50){
+			this.posicionY = yf*50;
+			//this.setPosicionY(yf*50);
+			System.out.println("Posicion y " + yf + " " + posicionY );
+		}
+		
+
+
+		
+	}*/
+	
+	
 }
