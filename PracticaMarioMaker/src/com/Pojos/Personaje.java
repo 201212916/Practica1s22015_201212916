@@ -5,12 +5,12 @@ public class Personaje extends Objeto {
 	private String nombreJ;
 	private int vida, monedas; 
 	
-	public Personaje(int numero){
-		super(numero);
-		this.nombreJ = "";
+	public Personaje(int numero, String nombre){
+		super(numero, nombre);
+		this.nombreJ = "Player 1";
 		this.vida = 1;
 		this.monedas = 0;
-		this.setNombre("Personaje_Principal");
+		this.setNombre(nombre);
 		this.setImagenPath("/com/Imagenes/mario.png");
 	}
 
@@ -38,5 +38,8 @@ public class Personaje extends Objeto {
 		this.monedas = monedas;
 	}
 
+	public String toString(){
+		return this.getNombre() + ": " + this.getNombreJ() + " , Monedas: " + this.getMonedas() + " , Vidas: " + this.getVida();
+	}
 
 }

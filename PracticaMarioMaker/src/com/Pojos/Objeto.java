@@ -10,6 +10,12 @@ public class Objeto {
 		this.imagenPath = "";
 		this.numero = i;
 	}
+	
+	public Objeto(int i, String nombre){
+		this.nombre = nombre;
+		this.imagenPath = "";
+		this.numero = i;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -36,8 +42,7 @@ public class Objeto {
 	}
 
 	public String toString(){
-		//System.out.println("* " + this.getNombre() + " " + this.getNumero());
-		return "* " + this.getNombre() + " " + this.getNumero();
+		return "* " + this.getNombre() + " Cantidad: " + this.getNumero();
 	}
 	
 }

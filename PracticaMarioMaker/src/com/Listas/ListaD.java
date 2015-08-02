@@ -4,7 +4,7 @@ import com.Nodos.*;
 
 public class ListaD {
 
-	public NodoD primero, ultimo;
+	private NodoD primero, ultimo;
 
 	public ListaD() {
 		this.primero = null;
@@ -32,14 +32,11 @@ public class ListaD {
 				nodo.setAnterior(temporal);
 			}
 
-			System.out.println("Se inserto: " + dato);
-
 		} catch (Exception e) {
 			System.out.println("Error en metodo agregarNodo() " + e);
 		}
 	}
 
-	// revisar metodo, variable contador.
 	public int getIndiceNodo(Object dato) {
 		int contador = -1;
 		try {
@@ -56,14 +53,14 @@ public class ListaD {
 					contador++;
 				}
 				;
-				return -1;
+				return contador;
 			} else {
-				return -1;
+				return contador;
 			}
 
 		} catch (Exception e) {
 			System.out.println("Error en metodo getIndiceNodo() " + e);
-			return -1;
+			return contador;
 		}
 
 	}
@@ -146,7 +143,7 @@ public class ListaD {
 			} else {
 
 				while (temporal != null) {
-					System.out.println(" ** " + temporal.getDato());
+					System.out.println(temporal.getDato());
 					temporal = temporal.getSiguiente();
 				}
 
@@ -174,10 +171,7 @@ public class ListaD {
 					primero = temporal;
 				}
 				else if (i >1 && this.getTamaño() == i) {
-//					NodoD temporal = getNodo(this.getTamaño() - 1);
-//					temporal.siguiente = null;
-//					ultimo = temporal;
-					
+
 					NodoD temporal = new NodoD();
 					temporal = ultimo.getAnterior();
 					temporal.setSiguiente(null);
@@ -193,7 +187,6 @@ public class ListaD {
 					temporal.setSiguiente(null);
 					temporal = null;
 				}
-				System.out.println("removi " + dato.getDato());
 			} else {
 				System.out.println("El nodo no existe");
 			}
@@ -210,5 +203,5 @@ public class ListaD {
 	public void removeCola(){
 		this.remove(1);
 	}
-
+	
 }

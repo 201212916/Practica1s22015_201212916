@@ -15,12 +15,12 @@ public class E_Objetos extends JFrame implements ActionListener {
 	        setBounds(0,0,1100,200);
 	        setVisible(true);
 	        setLocationRelativeTo(null);
-	    	
+	        getContentPane().setLayout(null);	    	
 	    	o = new ListaO();
 	    	o.iniciarMatriz();
 	    	
 	    	
-	        getContentPane().setLayout(null);
+
 	        boton1=new JButton("Finalizar");
 	        boton1.setBounds(350,10,100,30);
 	        getContentPane().add(boton1);

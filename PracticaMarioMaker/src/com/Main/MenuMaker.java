@@ -25,12 +25,12 @@ public class MenuMaker extends JFrame  implements  MouseListener {
 	
 	O_Personaje ob= new O_Personaje();
 	ListaO o = new ListaO();
-	Crear c;
+	CrearTablero c;
 	
 
 	public MenuMaker(){
 		
-		c = new Crear();
+		c = new CrearTablero();
 		//se inicia la matriz de 2x4
 		o.iniciarMatriz();
 		
