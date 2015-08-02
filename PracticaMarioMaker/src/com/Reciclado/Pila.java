@@ -1,10 +1,10 @@
-package com.Listas;
+package com.Reciclado;
 import com.Nodos.*;
 
 public class Pila {
 
-	private NodoP primero = new NodoP();
-	private NodoP ultimo = new NodoP();
+	public NodoP primero;
+	public NodoP ultimo;
 
 	public Pila() {
 		this.primero = null;
@@ -12,7 +12,7 @@ public class Pila {
 	}
 
 	public boolean Empty() {
-		return this.primero == null && this.ultimo== null ? true : false;
+		return primero == null && ultimo== null ? true : false;
 	}
 
 	public Object push(Object dato) {
@@ -31,11 +31,11 @@ public class Pila {
 		return dato;
 	}
 
-	public void pop() {
+	public Object pop() {
 
 		try{
 			
-//			NodoP temporal = new NodoP();
+			NodoP temporal = new NodoP();
 
 			if(!Empty()){
 				
@@ -45,17 +45,22 @@ public class Pila {
 			//		temporal = temporal.getSiguiente();
 			//	}				
 				
-				//temporal = ultimo;
+				temporal = ultimo;
 				//temporal2 = temporal;
 
 				ultimo.setSiguiente(null);
+
 				ultimo = null;
-				//return temporal2.getDato();
+				
+				System.out.println("if " + ultimo);
+				
+
+				return temporal.getDato();
 			}else{
-				//return null;
+				return "";
 			}
 		}catch(Exception e){
-			//return null;
+			return "";
 		}
 
 
@@ -65,12 +70,13 @@ public class Pila {
 
 		NodoP temporal = new NodoP();
 		temporal = primero;
+		String valor = "";
 
 		while (temporal != null) {
-
-			System.out.println("* " + temporal.getDato());
+			valor = valor + temporal.getDato() + "\n";
 			temporal = temporal.getSiguiente();
 		}
+		System.out.println(valor);
 	}
 
 }

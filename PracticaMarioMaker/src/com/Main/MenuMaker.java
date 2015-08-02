@@ -3,6 +3,8 @@ import com.Creacion.*;
 import com.Objetos.*;
 import com.Listas.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.BorderLayout;
@@ -18,14 +20,17 @@ import java.awt.Panel;
 import javax.swing.JButton;
 
 
-public class MenuMaker extends JFrame  implements MouseListener {
+public class MenuMaker extends JFrame  implements  MouseListener {
 
-
+	
 	O_Personaje ob= new O_Personaje();
 	ListaO o = new ListaO();
+	Crear c;
+	
 
 	public MenuMaker(){
 		
+		c = new Crear();
 		//se inicia la matriz de 2x4
 		o.iniciarMatriz();
 		
@@ -35,7 +40,7 @@ public class MenuMaker extends JFrame  implements MouseListener {
 		/*Creacion de ventana */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		getContentPane().add(new Crear());	
+		getContentPane().add(c);
 		
 		System.out.println("Constructor menumaker()");
 		setTitle("Escenario");
@@ -48,15 +53,25 @@ public class MenuMaker extends JFrame  implements MouseListener {
 		/* otros componentes */
 		
 		JButton btnAgregarFila = new JButton("Agregar Fila");
+		btnAgregarFila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (arg0.getSource()==btnAgregarFila) {
+		            o.agregarColumna();
+		            o.agregarFila();
+		        }
+			}
+		});
 		btnAgregarFila.setBounds(23, 11, 135, 23);
 		getContentPane().add(btnAgregarFila);
-		setVisible(true);
+		btnAgregarFila.setDoubleBuffered(true);
+
 		
+		/*
 		JButton btnAgregarColumna = new JButton("Agregar Columna");
 		btnAgregarColumna.setBounds(170, 11, 135, 23);
 		getContentPane().add(btnAgregarColumna);
 		setVisible(true);
-		
+		*/
 	}
 	
 

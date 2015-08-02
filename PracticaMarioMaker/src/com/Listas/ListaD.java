@@ -70,22 +70,44 @@ public class ListaD {
 
 	public NodoD getNodo(int posicion) {
 		try {
-			NodoD temporal;
+			NodoD temporal = null;
 
 			if (!esVacio()) {
-				temporal = primero;
-				for (int i = 1; i < posicion; i++) {
-					temporal = temporal.getSiguiente();
+				if(posicion <0){
+					System.out.println("No existe un nodo con indice negativo");
+					return temporal;
 				}
+				else if (posicion == 0 ){
+					System.out.println("No Se puede eliminar la raiz de la lista");
+					return temporal;
+				}
+				else{
+					temporal = primero;
+					for (int i = 1; i < posicion; i++) {
+						temporal = temporal.getSiguiente();
+					}
+					return temporal;			
+				} 
+			}
+			else{
 				return temporal;
-			} else {
-				return null;
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo getNodo() " + e);
 			return null;
 		}
 
+	}
+	
+	public int getTamaño(){
+		int contador = 0;
+		NodoD nodo = new NodoD();
+		nodo = primero;
+		while(nodo!=null){
+			nodo = nodo.getSiguiente();
+			contador++;
+		}
+		return contador;
 	}
 
 	public void getAnterior(Object dato) {
@@ -124,7 +146,7 @@ public class ListaD {
 			} else {
 
 				while (temporal != null) {
-					System.out.print(" | " + temporal.getDato());
+					System.out.println(" ** " + temporal.getDato());
 					temporal = temporal.getSiguiente();
 				}
 
@@ -135,25 +157,58 @@ public class ListaD {
 		}
 	}
 
-	public void remove() {
+	public void remove(int i) {
 		try {
-			if (!esVacio()) {
-				if (ultimo == primero) {
+			
+			NodoD dato = this.getNodo(i);
+			
+			if (!esVacio() && dato != null) {
+				if (this.getTamaño()==1 && i==1){
 					primero = null;
 					ultimo = null;
-				} else {
+				}
+				else if (i==1 && this.getTamaño()>1) {
+					NodoD temporal = new NodoD();
+					temporal = getNodo(i+1);
+					primero.setSiguiente(null);
+					primero = temporal;
+				}
+				else if (i >1 && this.getTamaño() == i) {
+//					NodoD temporal = getNodo(this.getTamaño() - 1);
+//					temporal.siguiente = null;
+//					ultimo = temporal;
+					
 					NodoD temporal = new NodoD();
 					temporal = ultimo.getAnterior();
 					temporal.setSiguiente(null);
 					ultimo = temporal;
 				}
+				else {
+					NodoD temporal = new NodoD();
+					temporal = getNodo(i);
+					
+					temporal.getAnterior().setSiguiente(temporal.getSiguiente());
+					temporal.getSiguiente().setAnterior(temporal.getAnterior());
+
+					temporal.setSiguiente(null);
+					temporal = null;
+				}
+				System.out.println("removi " + dato.getDato());
 			} else {
-				System.out.println("La lista esta vacia por eso no se remueve");
+				System.out.println("El nodo no existe");
 			}
 
 		} catch (Exception e) {
 			System.out.println("Error al remover");
 		}
+	}
+	
+	public void removePila(){
+		this.remove(this.getTamaño());
+	}
+	
+	public void removeCola(){
+		this.remove(1);
 	}
 
 }

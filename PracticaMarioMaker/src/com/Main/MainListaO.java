@@ -1,9 +1,11 @@
 package com.Main;
 import com.Listas.*;
+import com.Escenarios.*;
 
 public class MainListaO {
 	
 	MenuMaker m;
+	E_Objetos e;
 	//ListaO o;
 	public MainListaO(){
 
@@ -42,6 +44,7 @@ public class MainListaO {
 		//o.insertarDato("*_*", 3, 5);
 
 		m = new MenuMaker(); //llamada a la clase menu maker que crea la ventana inicial
+		e = new E_Objetos();
 			
 	}
 

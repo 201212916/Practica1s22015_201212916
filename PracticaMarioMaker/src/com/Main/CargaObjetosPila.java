@@ -2,19 +2,19 @@ package com.Main;
 import com.Listas.*;
 import com.Pojos.*;
 
-public class CargaObjetos {
+public class CargaObjetosPila {
 	
-	ListaD Goomba, Koopa, Suelo, Pared, Moneda, Vida, Castillo, Jugador;
+	Pila pilaGoomba, pilaKoopa, pilaSuelo, pilaPared, pilaMoneda, pilaVida, pilaCastillo, pilaJugador;
 	
-	public CargaObjetos(){
-		Goomba = new ListaD(); 
-		Koopa = new ListaD();
-		Suelo = new ListaD();
-		Pared = new ListaD();
-		Moneda = new ListaD();
-		Vida = new ListaD();
-		Castillo = new ListaD();
-		Jugador = new ListaD();
+	public CargaObjetosPila(){
+		pilaGoomba = new Pila(); 
+		pilaKoopa = new Pila();
+		pilaSuelo = new Pila();
+		pilaPared = new Pila();
+		pilaMoneda = new Pila();
+		pilaVida = new Pila();
+		pilaCastillo = new Pila();
+		pilaJugador = new Pila();
 		
 		
 		this.ejecutar();
@@ -35,7 +35,7 @@ public class CargaObjetos {
 	public void CargaGoomba(){
 		try{
 			for(int i= 0 ; i<5; i++){
-				Goomba.agregarNodo(new Goomba(i+1));
+				pilaGoomba.push(new Goomba(i+1));
 			}	
 		}catch(Exception e){
 			System.out.println("Error en metodo CargaGoomba() " + e);
@@ -45,7 +45,7 @@ public class CargaObjetos {
 	public void CargaKoopa() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Koopa.agregarNodo(new Koopa(i + 1));
+				pilaKoopa.push(new Koopa(i + 1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaKoopa() " + e);
@@ -55,7 +55,7 @@ public class CargaObjetos {
 	public void CargaSuelo() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Suelo.agregarNodo(new Suelo(i + 1));
+				pilaSuelo.push(new Suelo(i + 1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaSuelo() " + e);
@@ -65,7 +65,7 @@ public class CargaObjetos {
 	public void CargaPared() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Pared.agregarNodo(new Pared(i + 1));
+				pilaPared.push(new Pared(i + 1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaPared() " + e);
@@ -75,7 +75,7 @@ public class CargaObjetos {
 	public void CargaMoneda() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Moneda.agregarNodo(new Moneda(i + 1));
+				pilaMoneda.push(new Moneda(i + 1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaMoneda() " + e);
@@ -85,7 +85,7 @@ public class CargaObjetos {
 	public void CargaVida() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Vida.agregarNodo(new Vida(i + 1));
+				pilaVida.push(new Vida(i + 1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaVida() " + e);
@@ -94,7 +94,7 @@ public class CargaObjetos {
 	
 	public void CargaCastillo() {
 		try {
-			Castillo.agregarNodo(new Castillo(1));
+			pilaCastillo.push(new Castillo(1));
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaCastillo() " + e);
 		}
@@ -102,7 +102,7 @@ public class CargaObjetos {
 	
 	public void CargaJugador() {
 		try {
-			Jugador.agregarNodo(new Personaje(1));
+			pilaJugador.push(new Personaje(1));
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaJugador() " + e);
 		}
