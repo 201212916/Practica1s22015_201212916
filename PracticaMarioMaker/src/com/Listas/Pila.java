@@ -12,7 +12,7 @@ public class Pila {
 	}
 
 	public boolean Empty() {
-		return this.primero == null && this.ultimo== null ? true : false;
+		return this.primero == null ? true : false;
 	}
 
 	public Object push(Object dato) {
@@ -31,33 +31,15 @@ public class Pila {
 		return dato;
 	}
 
-	public void pop() {
+	public Object pop() {
 
-		try{
-			
-//			NodoP temporal = new NodoP();
+		NodoP temporal = new NodoP();
+		temporal = ultimo;
 
-			if(!Empty()){
-				
-			//	temporal = primero;
-				
-			//	while(temporal!=null){
-			//		temporal = temporal.getSiguiente();
-			//	}				
-				
-				//temporal = ultimo;
-				//temporal2 = temporal;
+		ultimo.setSiguiente(null);
+		ultimo = null;
 
-				ultimo.setSiguiente(null);
-				ultimo = null;
-				//return temporal2.getDato();
-			}else{
-				//return null;
-			}
-		}catch(Exception e){
-			//return null;
-		}
-
+		return temporal.getDato();
 
 	}
 

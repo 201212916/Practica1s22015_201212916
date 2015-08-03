@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Main/MainListaO.java</file>
-            <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Main/Escenario.java</file>
+            <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Creacion/CrearTablero.java</file>
             <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Objetos/O_Personaje.java</file>
-            <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Main/MenuMaker.java</file>
+            <file>file:/C:/Users/Pablito/workspace/PracticaMarioMaker/src/com/Escenarios/E_CreacionObjeto.java</file>
         </group>
     </open-files>
 </project-private>

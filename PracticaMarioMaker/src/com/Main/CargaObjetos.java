@@ -4,11 +4,14 @@ import com.Pojos.*;
 
 public class CargaObjetos {
 	
-	private ListaD Goomba, Koopa, Suelo, Pared, Moneda, Vida, Castillo, Jugador;
+	private static ListaD Goomba, Koopa, Suelo, Pared, Moneda, Vida, Castillo, Jugador;
+	private static Personaje pojoPersonaje;
+	private static Castillo pojoCastillo;
+	private static ListaO ortogonal;
 
 	
 	public CargaObjetos(){
-		Goomba = new ListaD(); 
+		Goomba = new ListaD();
 		Koopa = new ListaD();
 		Suelo = new ListaD();
 		Pared = new ListaD();
@@ -16,10 +19,12 @@ public class CargaObjetos {
 		Vida = new ListaD();
 		Castillo = new ListaD();
 		Jugador = new ListaD();
-	
-		this.ejecutar();
+		ortogonal = new ListaO();
 		
+		this.ejecutar();
+	
 	}
+	
 	
 	public void ejecutar(){
 		this.CargaGoomba();
@@ -30,9 +35,10 @@ public class CargaObjetos {
 		this.CargaVida();
 		this.CargaCastillo();
 		this.CargaJugador();
+		this.ortogonal.iniciarMatriz();
 	}
 	
-	public void CargaGoomba(){
+	private void CargaGoomba(){
 		try{
 			for(int i= 0 ; i<5; i++){
 				Goomba.agregarNodo(new Goomba(i+1,"Goomba_" + (i+1)));
@@ -42,7 +48,7 @@ public class CargaObjetos {
 		}
 	}
 	
-	public void CargaKoopa() {
+	private void CargaKoopa() {
 		try {
 			for (int i = 0; i < 5; i++) {
 				Koopa.agregarNodo(new Koopa(i+1, "Koopa_" + (i+1)));
@@ -52,7 +58,7 @@ public class CargaObjetos {
 		}
 	}
 	
-	public void CargaSuelo() {
+	private void CargaSuelo() {
 		try {
 			for (int i = 0; i < 5; i++) {
 				Suelo.agregarNodo(new Suelo(i+1, "Suelo_" + (i+1)));
@@ -62,17 +68,17 @@ public class CargaObjetos {
 		}
 	}
 	
-	public void CargaPared() {
+	private void CargaPared() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				Pared.agregarNodo(new Pared(i+1, "Suelo_" + (i+1)));
+				Pared.agregarNodo(new Pared(i+1, "Pared_" + (i+1)));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaPared() " + e);
 		}
 	}
 	
-	public void CargaMoneda() {
+	private void CargaMoneda() {
 		try {
 			for (int i = 0; i < 5; i++) {
 				Moneda.agregarNodo(new Moneda(i+1, "Moneda_" + (i+1)));
@@ -82,7 +88,7 @@ public class CargaObjetos {
 		}
 	}
 	
-	public void CargaVida() {
+	private void CargaVida() {
 		try {
 			for (int i = 0; i < 5; i++) {
 				Vida.agregarNodo(new Vida(i+1,"Hongo_Vida_"+(i+1)));
@@ -92,17 +98,17 @@ public class CargaObjetos {
 		}
 	}
 	
-	public void CargaCastillo() {
+	private void CargaCastillo() {
 		try {
-			Castillo.agregarNodo(new Castillo(1,"Castillo_" + 1));
+			Castillo.agregarNodo(pojoCastillo = new Castillo(1,"Castillo_" + 1));
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaCastillo() " + e);
 		}
 	}
 	
-	public void CargaJugador() {
+	private void CargaJugador() {
 		try {
-			Jugador.agregarNodo( new Personaje(1,"Mario Bros"));
+			Jugador.agregarNodo(pojoPersonaje = new Personaje(1,"Mario Bros"));
 		} catch (Exception e) {
 			System.out.println("Error en metodo CargaJugador() " + e);
 		}
@@ -173,5 +179,37 @@ public class CargaObjetos {
 	public void setJugador(ListaD jugador) {
 		Jugador = jugador;
 	}
+	
+	/* Getters and Setters de los Pojos*/
+
+	public Personaje getPojoPersonaje() {
+		return pojoPersonaje;
+	}
+
+
+	public void setPojoPersonaje(Personaje pojoPersonaje) {
+		CargaObjetos.pojoPersonaje = pojoPersonaje;
+	}
+
+
+	public Castillo getPojoCastillo() {
+		return pojoCastillo;
+	}
+
+
+	public void setPojoCastillo(Castillo pojoCastillo) {
+		CargaObjetos.pojoCastillo = pojoCastillo;
+	}
+
+
+	public ListaO getOrtogonal() {
+		return ortogonal;
+	}
+
+
+	public void setOrtogonal(ListaO ortogonal) {
+		this.ortogonal = ortogonal;
+	}
+	
 	
 }

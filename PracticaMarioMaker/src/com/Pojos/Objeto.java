@@ -42,7 +42,7 @@ public class Objeto {
 	}
 
 	public String toString(){
-		return "* " + this.getNombre() + " Cantidad: " + this.getNumero();
+		return "* " + this.getNombre();
 	}
 	
 }

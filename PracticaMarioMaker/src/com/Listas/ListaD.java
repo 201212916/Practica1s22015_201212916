@@ -96,7 +96,7 @@ public class ListaD {
 
 	}
 	
-	public int getTamaño(){
+	public int getSize(){
 		int contador = 0;
 		NodoD nodo = new NodoD();
 		nodo = primero;
@@ -160,17 +160,17 @@ public class ListaD {
 			NodoD dato = this.getNodo(i);
 			
 			if (!esVacio() && dato != null) {
-				if (this.getTamaño()==1 && i==1){
+				if (this.getSize()==1 && i==1){
 					primero = null;
 					ultimo = null;
 				}
-				else if (i==1 && this.getTamaño()>1) {
+				else if (i==1 && this.getSize()>1) {
 					NodoD temporal = new NodoD();
 					temporal = getNodo(i+1);
 					primero.setSiguiente(null);
 					primero = temporal;
 				}
-				else if (i >1 && this.getTamaño() == i) {
+				else if (i >1 && this.getSize() == i) {
 
 					NodoD temporal = new NodoD();
 					temporal = ultimo.getAnterior();
@@ -197,7 +197,7 @@ public class ListaD {
 	}
 	
 	public void removePila(){
-		this.remove(this.getTamaño());
+		this.remove(this.getSize());
 	}
 	
 	public void removeCola(){

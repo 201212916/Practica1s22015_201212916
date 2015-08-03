@@ -39,7 +39,7 @@ public class Personaje extends Objeto {
 	}
 
 	public String toString(){
-		return this.getNombre() + ": " + this.getNombreJ() + " , Monedas: " + this.getMonedas() + " , Vidas: " + this.getVida();
+		return "Jugador: " + this.getNombreJ() + " Personaje: " + this.getNombre();
 	}
 
 }

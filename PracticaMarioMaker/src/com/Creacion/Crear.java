@@ -19,7 +19,6 @@ public class Crear extends JPanel implements ActionListener {
 	private O_Goomba goomba;
 	private Timer timer;
 	private ListaO listao;
-	public boolean bandera = true;
 
 	
 	public Crear(){
@@ -39,30 +38,27 @@ public class Crear extends JPanel implements ActionListener {
 
 	
 	public void paint(Graphics grafico){
-
-			 super.paint(grafico);
-				
-				Graphics2D gr2 = (Graphics2D) grafico;
-				gr2.drawImage(personaje.getImagen(), personaje.getX(), personaje.getY(), null);
-				
-				
-				/* creacion de tablero */
-				
-				int fila = listao.getDibFila() + 1 ;
-				int columna = listao.getDibColumna() +1;
-				int ancho = 50, alto = 50;
-				
-				for(int i = 1; i <= fila; i++){ 
-					grafico.drawLine(50, i * alto, (columna * 50), i * alto); // linea horizontal 
-				} 
-				
-				for(int i = 1; i <= columna; i++){ 
-					grafico.drawLine(i * ancho, 50, i * ancho, (fila *50) ); // linea vertical
-				}
-
+		super.paint(grafico);
+		
+		Graphics2D gr2 = (Graphics2D) grafico;
+		gr2.drawImage(personaje.getImagen(), personaje.getX(), personaje.getY(), null);
+		
+		
+		/* creacion de tablero */
+		
+		int fila = listao.getDibFila() + 1 ;
+		int columna = listao.getDibColumna() +1;
+		int ancho = 50, alto = 50;
+		
+		for(int i = 1; i <= fila; i++){ 
+			grafico.drawLine(50, i * alto, (columna * 50), i * alto); // linea horizontal 
+		} 
+		
+		for(int i = 1; i <= columna; i++){ 
+			grafico.drawLine(i * ancho, 50, i * ancho, (fila *50) ); // linea vertical
+		} 
 	}
 	
-
 	public void actionPerformed(ActionEvent e){
 		this.personaje.mover();
 		//this.goomba.mover();
