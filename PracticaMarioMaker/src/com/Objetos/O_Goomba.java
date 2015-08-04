@@ -23,10 +23,10 @@ public class O_Goomba {
 			
 		}
 		
-		public void mover(){
-			this.x += dx;
-			this.y += dy;
-		}
+//		public void mover(){
+//			this.x += dx;
+//			this.y += dy;
+//		}
 
 		public int getX() {
 			return x;

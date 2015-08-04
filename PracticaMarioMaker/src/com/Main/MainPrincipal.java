@@ -9,13 +9,18 @@ public class MainPrincipal {
 
 	
 	public static void main(String[] args) {
-		//E_ObjetosMenu e = new E_ObjetosMenu();		
-//		e.show();
+		E_ObjetosMenu e = new E_ObjetosMenu();		
+		e.show();
 //		//MainListaO c = new MainListaO();
-		//E_Escenario es = new E_Escenario();
+		E_Escenario es = new E_Escenario(e.getO());
 //		CargaObjetos c = new CargaObjetos();
 //		
 		
+		E_Juego j = new E_Juego(e);
+		j.show();
+		
+		E_Lateral l = new E_Lateral();
+		l.show();
 		
 		//MenuMaker m = new MenuMaker();
 		
@@ -36,11 +41,23 @@ public class MainPrincipal {
 
 		//m.show();
 		
-		ArchivoOrtogonal a = new ArchivoOrtogonal();
+//		ArchivoOrtogonal a = new ArchivoOrtogonal();
+//		
+//		a.generarArchivo();
+//		
+//		
+//		ArchivoListas l = new ArchivoListas();
+//		
+//		l.generarArchivo();
+//		
+//		ArchivoImagen i = new ArchivoImagen();
+//		
+//		i.abrirImagenLista();
+//		i.abrirImagenOrtogonal();
 		
-		a.generarArchivo();
+
 		
-		
+
 	}
 
 }

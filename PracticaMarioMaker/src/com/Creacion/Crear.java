@@ -60,7 +60,7 @@ public class Crear extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		this.personaje.mover();
+		//this.personaje.mover();
 		//this.goomba.mover();
 		this.repaint();
 	}

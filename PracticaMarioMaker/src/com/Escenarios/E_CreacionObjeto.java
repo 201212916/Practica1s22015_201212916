@@ -3,12 +3,14 @@ package com.Escenarios;
 import com.Main.CargaObjetos;
 import com.Pojos.*;
 import com.Reportes.ArchivoListas;
+import com.Reportes.ArchivoOrtogonal;
 
 public class E_CreacionObjeto extends javax.swing.JFrame {
 
     /* Variables globales*/
     private CargaObjetos carga;
-    private ArchivoListas a;
+    private ArchivoListas archivoL;
+   // private ArchivoOrtogonal archivoO;
     /* Fin de variables globales */
 
     public E_CreacionObjeto() {
@@ -16,7 +18,8 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         carga = new CargaObjetos();
-        a = new ArchivoListas();
+        archivoL = new ArchivoListas();
+        //archivoO = new ArchivoOrtogonal(carga);
     }
 
    
@@ -156,7 +159,9 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
         
         
 		
-		a.generarArchivo();
+		archivoL.generarArchivo();
+	//	archivoO.generarArchivo();
+		
         
         this.hide();
 

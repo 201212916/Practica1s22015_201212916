@@ -1,7 +1,9 @@
 package com.Escenarios;
 
 import com.Creacion.*;
+import com.Main.*;
 import com.Objetos.*;
+import com.Reportes.ArchivoOrtogonal;
 import com.Listas.*;
 
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -28,16 +31,20 @@ import javax.swing.JPanel;
 
 public class E_Escenario extends JFrame implements MouseListener {
 
-	O_Personaje ob = new O_Personaje();
-	ListaO o;
-	CrearTablero c;
+	private O_Personaje ob = new O_Personaje();
+	private static ListaO o;
+	private CrearTablero c;
+	private CargaObjetos carga;
+	private ArchivoOrtogonal archivoO;
 
-	public E_Escenario() {
-		o = new ListaO();
-		c = new CrearTablero();
-		// se inicia la matriz de 2x4
-		//o.iniciarMatriz();
+	public E_Escenario(ListaO ortogonal) {
 
+		carga = new CargaObjetos();
+		archivoO = new ArchivoOrtogonal(ortogonal);
+
+		o = ortogonal;
+		c = new CrearTablero(carga, ortogonal);
+		
 		// llamada al evento click
 		addMouseListener(this);
 
@@ -49,7 +56,7 @@ public class E_Escenario extends JFrame implements MouseListener {
 		
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (pantalla.width - 1100)/2;
-        System.out.println(width);
+        
 
 		setTitle("Escenario");
 		setBounds(width, 210, 1100, 500);
@@ -81,6 +88,8 @@ public class E_Escenario extends JFrame implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		
+		
 		int x = this.getPosicionX(e);
 		int y = this.getPosicionY(e);
 
@@ -89,30 +98,40 @@ public class E_Escenario extends JFrame implements MouseListener {
 
 		System.out.println("limite x " + limiteX);
 		System.out.println("limite y " + limiteY);
-		int defaultX = 150;
+		
+		int defaultX = 50;
 		int defaultY = 50;
 
 		int xf = x / 50;
-		int yf = (y - 25) / 50;
+		int yf = (y	) / 50;
 
-		System.out.println("x " + x);
-		System.out.println("y " + y);
+		System.out.println(limiteX+ " = " + x);
+		System.out.println(limiteY+ " = " + y);
+		
+		if (x >= defaultX && y >= defaultY) {
+			if (x <= limiteX && y <= limiteY) {
 
-		if (x >= defaultX || x <= limiteX) {
-			if (y >= defaultY || y <= limiteY) {
+				/* objeto personaje mover*/
+//				if (x >= 50) {
+//					ob.setX(xf * 50);
+//				}
+//
+//				if (y >= 50) {
+//					ob.setY(yf * 50);
+//				}
 
-				if (x >= 50) {
-					ob.setX(xf * 50);
+				if(!carga.getTemporal().esVacio()){
+					o.insertarDato(carga.getTemporal().removePila(), yf, xf);
+					archivoO.generarArchivo();					
 				}
-
-				if (y >= 50) {
-					ob.setY(yf * 50);
-				}
+				
 			} else {
 				System.out.println("Esta fuera del rango de la matriz, y");
+				JOptionPane.showMessageDialog(null, "rango limite fuera");
 			}
 		} else {
 			System.out.println("Esta fuera del rango de la matriz, x ");
+			JOptionPane.showMessageDialog(null, "rango default fuera");
 		}
 
 	}

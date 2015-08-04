@@ -14,7 +14,7 @@ public class ArchivoListas {
 	}
 
 	public void generarArchivo() {
-		String file = "Listas.txt";
+		String file = "src/com/Archivos/Listas.txt";
 		String respuesta="";
 		File f = new File(file);
 		BufferedWriter bw;
@@ -81,18 +81,17 @@ public class ArchivoListas {
 
 			retorno += "\tnodo" + prefijo + "" + size + ":s -> nodoNull" + prefijo + ":n;\n\r";
 		}
-
-		System.out.println("Ya genere el archivo");
 		return retorno;
 	}
 
 	private void crearDibujo(String path) {
 		try {
 
+			//String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 			String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 
 			String fileInputPath = path;
-			String fileOutputPath = "Listas.jpg";
+			String fileOutputPath = "src/com/Archivos/Listas.jpg";
 
 			String tParam = "-Tjpg";
 			String tOParam = "-o";

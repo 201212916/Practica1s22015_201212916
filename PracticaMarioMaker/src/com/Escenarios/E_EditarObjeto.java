@@ -18,7 +18,7 @@ public class E_EditarObjeto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         carga = new CargaObjetos();
-        a = new ArchivoListas();
+        //a = new ArchivoListas();
         jTextField1.setText(carga.getPojoPersonaje().getNombre());
         
     }

@@ -7,7 +7,13 @@ public class CargaObjetos {
 	private static ListaD Goomba, Koopa, Suelo, Pared, Moneda, Vida, Castillo, Jugador;
 	private static Personaje pojoPersonaje;
 	private static Castillo pojoCastillo;
-	private static ListaO ortogonal;
+	private static Goomba pojoGommba;
+	private static Koopa pojoKoopa;
+	private static Suelo pojoSuelo;
+	private static Pared pojoPared;
+	private static Moneda pojoMoneda;
+	private static Vida pojoVida;
+	private static ListaD temporal;
 
 	
 	public CargaObjetos(){
@@ -19,14 +25,13 @@ public class CargaObjetos {
 		Vida = new ListaD();
 		Castillo = new ListaD();
 		Jugador = new ListaD();
-		ortogonal = new ListaO();
-		
+		temporal = new ListaD();
 		this.ejecutar();
-	
 	}
 	
-	
+
 	public void ejecutar(){
+		
 		this.CargaGoomba();
 		this.CargaKoopa();
 		this.CargaSuelo();
@@ -35,7 +40,7 @@ public class CargaObjetos {
 		this.CargaVida();
 		this.CargaCastillo();
 		this.CargaJugador();
-		this.ortogonal.iniciarMatriz();
+
 	}
 	
 	private void CargaGoomba(){
@@ -180,6 +185,8 @@ public class CargaObjetos {
 		Jugador = jugador;
 	}
 	
+	/*Fin de los getters y setters de las listas */
+	
 	/* Getters and Setters de los Pojos*/
 
 	public Personaje getPojoPersonaje() {
@@ -201,15 +208,77 @@ public class CargaObjetos {
 		CargaObjetos.pojoCastillo = pojoCastillo;
 	}
 
-
-	public ListaO getOrtogonal() {
-		return ortogonal;
+	public Goomba getPojoGommba() {
+		return pojoGommba;
 	}
 
 
-	public void setOrtogonal(ListaO ortogonal) {
-		this.ortogonal = ortogonal;
+	public void setPojoGommba(Goomba pojoGommba) {
+		this.pojoGommba = pojoGommba;
 	}
+
+
+	public Koopa getPojoKoopa() {
+		return pojoKoopa;
+	}
+
+
+	public void setPojoKoopa(Koopa pojoKoopa) {
+		this.pojoKoopa = pojoKoopa;
+	}
+
+
+	public Suelo getPojoSuelo() {
+		return pojoSuelo;
+	}
+
+
+	public void setPojoSuelo(Suelo pojoSuelo) {
+		this.pojoSuelo = pojoSuelo;
+	}
+
+
+	public Pared getPojoPared() {
+		return pojoPared;
+	}
+
+
+	public void setPojoPared(Pared pojoPared) {
+		this.pojoPared = pojoPared;
+	}
+
+
+	public Moneda getPojoMoneda() {
+		return pojoMoneda;
+	}
+
+
+	public void setPojoMoneda(Moneda pojoMoneda) {
+		this.pojoMoneda = pojoMoneda;
+	}
+
+
+	public Vida getPojoVida() {
+		return pojoVida;
+	}
+
+
+	public void setPojoVida(Vida pojoVida) {
+		this.pojoVida = pojoVida;
+	}
+
+	/*Fin de los getters y setters de pojos */
 	
+	/*Lista temporal de agregar al tablero */
+
+	public ListaD getTemporal() {
+		return temporal;
+	}
+
+
+	public void setTemporal(ListaD temporal) {
+		this.temporal = temporal;
+	}
+
 	
 }

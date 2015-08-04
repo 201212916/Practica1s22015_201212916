@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class O_Personaje {
 
-	private String personaje = "/com/Imagenes/mario.png";
+	private String personaje = "/com/Imagenes/50/mario50.png";
 	private static int dx, dy, x=50, y=50;
 	private Image imagen;
 	private ListaO o;
@@ -25,21 +25,21 @@ public class O_Personaje {
 		
 	}
 
-	public void mover(){
-
-		if (this.x>=100 || this.dx>0){
-			if (this.x <=o.getLimitefila() || this.dx<0){
-					this.x += this.dx;
-			}
-		}
-
-		if (this.y>=100 || this.dy>0){		
-			if (this.y <= o.getLimiteColumna() || this.dy<0){
-				this.y += this.dy;
-			}
-		}
-
-	}
+//	public void mover(){
+//
+//		if (this.x>=100 || this.dx>0){
+//			if (this.x <=o.getLimitefila() || this.dx<0){
+//					this.x += this.dx;
+//			}
+//		}
+//
+//		if (this.y>=100 || this.dy>0){		
+//			if (this.y <= o.getLimiteColumna() || this.dy<0){
+//				this.y += this.dy;
+//			}
+//		}
+//
+//	}
 
 	public int getX() {
 		return x;

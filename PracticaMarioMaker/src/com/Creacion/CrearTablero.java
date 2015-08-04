@@ -1,6 +1,7 @@
 package com.Creacion;
 
 import com.Objetos.*;
+import com.Main.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,24 +24,40 @@ import java.awt.Image;
 public class CrearTablero extends JPanel implements ActionListener {
 
 	private O_Personaje personaje;
+	private CargaObjetos carga;
 	private O_Goomba goomba;
 	private Timer timer;
 	private ListaO listao;
 	public boolean bandera = true;
-	private ImageIcon image = new ImageIcon(this.getClass().getResource(
-			"/com/Imagenes/fondo.jpg"));
-	private Image imagen = image.getImage();
+	private ImageIcon imageFondo;
+	private ImageIcon imageKoopa;
+	private Image imagenFondo;
+	private Image imagenKoopa;
 
-	public CrearTablero() {
+	public CrearTablero(CargaObjetos carga, ListaO listao) {
 
+		this.carga = carga;
+		goomba = new O_Goomba();
+		this.listao = listao;
+		imageFondo = new ImageIcon(this.getClass().getResource("/com/Imagenes/fondo.jpg"));
+		imageKoopa = new ImageIcon(this.getClass().getResource("/com/Imagenes/50/koopa50.png"));
+		
+
+		
+		imagenFondo = imageFondo.getImage();
+		imagenKoopa = imageKoopa.getImage();
+		
+		
+		timer = new Timer(100, this);
+		timer.start();
+
+
+		
+		
 		setFocusable(true);
 		addKeyListener(new teclado());
 		personaje = new O_Personaje();
 
-		goomba = new O_Goomba();
-		timer = new Timer(100, this);
-		timer.start();
-		listao = new ListaO();
 
 	}
 
@@ -49,9 +66,9 @@ public class CrearTablero extends JPanel implements ActionListener {
 		super.paint(grafico);
 
 		Graphics2D gr2 = (Graphics2D) grafico;
-		gr2.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-		gr2.drawImage(personaje.getImagen(), personaje.getX(),
-				personaje.getY(), null);
+		gr2.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+		//gr2.drawImage(, arg1, arg2, arg3)
+		gr2.drawImage(personaje.getImagen(), personaje.getX(),personaje.getY(), null);
 
 		/* creacion de tablero */
 
@@ -72,7 +89,7 @@ public class CrearTablero extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.personaje.mover();
+		//this.personaje.mover();
 		// this.goomba.mover();
 		this.repaint();
 	}

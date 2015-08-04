@@ -1,19 +1,20 @@
 package com.Reportes;
-
-import com.Main.*;
 import com.Listas.*;
+import com.Main.CargaObjetos;
 
 import java.io.*;
 
 public class ArchivoOrtogonal {
-	CargaObjetos carga;
-
-	public ArchivoOrtogonal() {
-		carga = new CargaObjetos();
+	
+	public ListaO ortogonal;
+	
+	public ArchivoOrtogonal(ListaO carga) {
+		ortogonal = carga;
 	}
 
 	public void generarArchivo() {
-		String file = "Ortogonal.txt";
+	
+		String file = "src/com/Archivos/Ortogonal.txt";
 		String respuesta = "";
 		File f = new File(file);
 		BufferedWriter bw;
@@ -30,9 +31,12 @@ public class ArchivoOrtogonal {
 			wr.write("\trankdir=LR;\n\r");
 			wr.write("\tnodoR [label = \"{<r>raiz|<s>}\"];\n\r");
 
-			respuesta += this.generarNodos(carga.getOrtogonal());
-			respuesta += this.generarUnionesAsc(carga.getOrtogonal());
-			respuesta += this.generarUnionesDsc(carga.getOrtogonal());
+			respuesta += this.generarNodos(ortogonal);
+			
+			System.out.println("1ra repuestas");
+			respuesta += this.generarUnionesAsc(ortogonal);
+			System.out.println("2da repuestas");
+			//respuesta += this.generarUnionesDsc(ortogonal);
 			wr.write(respuesta);
 			wr.write("}");
 			wr.close();
@@ -50,28 +54,40 @@ public class ArchivoOrtogonal {
 		String retorno = "";
 		int nFilas = objeto.getNumFilas() - 1;
 		int nColumnas = objeto.getNumColumnas() - 1;
+		
+		if(objeto.esVacioFila()){
+			for (int i = 1; i <= nColumnas; i++) {
+				retorno += "\tnodoM" + i + "Null [label = \"{<a>|<n>null|<s>}\"];\n\r";
+				retorno += "\tnodoC" + i + " [label = \"{<a>|<c1>Columna " + i + "|<s>}\"];\n\r";
+			}			
 
-		for (int i = 1; i <= nFilas; i++) {
-			retorno += "\tnodoF" + i + " [label = \"{<f>Fila " + i + "|<s>}\"];\n\r";
-			retorno += "\tnodo" + i + "MNull [label = \"{null}\"];\n\r";
-		}
-
-		retorno += "\tnodoFNull [label = \"{<n>null|<s>}\"];\n\r";
-
-		for (int i = 1; i <= nColumnas; i++) {
-			retorno += "\tnodoC" + i + " [label = \"{<a>|<c1>Columna " + i + "|<s>}\"];\n\r";
-			retorno += "\tnodoM" + i + "Null [label = \"{<a>|<n>null|<s>}\"];\n\r";
-		}
-
-		retorno += "\tnodoCNull [label = \"{null}\"];\n\r";
-
-		for (int i = 1; i <= nFilas; i++) {
-			for (int j = 1; j <= nColumnas; j++) {
-				retorno += "\tnodo" + i + "" + j + " [label = \"{<a>|<o>" 
-						+ objeto.buscarNodo(i, j).getDato() + " posicion: " + i
-						+ "," + j + "|<s>}\"];\n\r";
+		}else if (objeto.esVacioColumna()){
+			for (int i = 1; i <= nFilas; i++) {
+				retorno += "\tnodo" + i + "MNull [label = \"{null}\"];\n\r";
+			}			
+		}else{
+	
+			for (int i = 1; i <= nFilas; i++) {
+				retorno += "\tnodoF" + i + " [label = \"{<f>Fila " + objeto.buscarNodo(i, 0).getDato() + "|<s>}\"];\n\r";
+				retorno += "\tnodo" + i + "MNull [label = \"{null}\"];\n\r";
 			}
-
+	
+			retorno += "\tnodoFNull [label = \"{<n>null|<s>}\"];\n\r";
+	
+			for (int i = 1; i <= nColumnas; i++) {
+				retorno += "\tnodoC" + i + " [label = \"{<a>|<c1>Columna " + objeto.buscarNodo(0, i).getDato() + "|<s>}\"];\n\r";
+				retorno += "\tnodoM" + i + "Null [label = \"{<a>|<n>null|<s>}\"];\n\r";
+			}
+	
+			retorno += "\tnodoCNull [label = \"{null}\"];\n\r";
+	
+			for (int i = 1; i <= nFilas; i++) {
+				for (int j = 1; j <= nColumnas; j++) {
+					retorno += "\tnodo" + i + "" + j + " [label = \"{<a>|<o>" 
+							+ objeto.buscarNodo(i, j).getDato() +  "|<s>}\"];\n\r";
+				}
+	
+			}
 		}
 		return retorno;
 	}
@@ -81,6 +97,42 @@ public class ArchivoOrtogonal {
 		int nFilas = objeto.getNumFilas() - 1;
 		int nColumnas = objeto.getNumColumnas() - 1;
 
+		if(objeto.esVacioFila()){
+			retorno += "\tnodoR:r ->Null:f [constraint=false] ;\n\r";
+			retorno += "\tnodoR:s -> nodoC" + 1 + ":a ;\n\r";
+			
+			retorno += "\tedge [color=white];\n\r";
+			retorno += "\tNull:s -> nodoM1Null:a;\n\r";
+
+			
+			for (int i = 1; i <nColumnas; i++) {
+				retorno += "\tedge [color=white];\n\r";
+				
+				retorno += "\tnodoM" + i + "Null:s -> nodoM" + (i + 1) + "Null:a\n\r";
+				retorno += "\tedge [color=black];\n\r";
+				
+				retorno += "\tnodoC" + i + ":c1-> nodoM" + i + "Null:n  [constraint=false];\n\r";
+				retorno += "\tnodoC" + i + ":s -> nodoC" + (i+1) + ":a  ;\n\r";
+			}
+			retorno += "\tnodoC"+nColumnas+":c1 -> nodoM" + nColumnas + "Null [constraint=false];\n\r";
+			retorno += "\tnodoC"+nColumnas+":s -> null ;\n\r";
+			
+			
+		}else if (objeto.esVacioColumna()){
+			retorno += "\tnodoR:s -> Null ;\n\r";
+			retorno += "\tnodoR:r -> nodoF" + 1 + ":f [constraint=false];\n\r";
+			for (int i = 1; i <nFilas; i++) {
+				retorno += "\tnodoF" + i + ":f-> nodo" + i + "MNull;\n\r";
+				retorno += "\tnodoF" + i + ":f -> nodoF" + (i+1) + ":f  [constraint=false];\n\r";
+			}
+			retorno += "\tnodoF"+nFilas+":f -> nodo" + nFilas + "MNull;\n\r";
+			retorno += "\tnodoF"+nFilas+":f -> null [constraint=false];\n\r";
+			
+
+			
+		}else{
+		
+		
 		// Asignacion de nodos principales y nulos
 		retorno += "\tnodoR:r -> nodoF1:f [constraint=false];\n\r";
 		for (int i = 1; i < nFilas; i++) {
@@ -130,7 +182,10 @@ public class ArchivoOrtogonal {
 		}
 		retorno += "\tnodo" + nFilas + "" + nColumnas + ":c -> nodoM" + nColumnas + "Null  [constraint=false] ;\n\r";
 
-		return retorno;
+		retorno += this.generarUnionesDsc(objeto);
+		
+		}
+		return retorno;		
 	}
 
 	private String generarUnionesDsc(ListaO objeto) {
@@ -172,10 +227,11 @@ public class ArchivoOrtogonal {
 	private void crearDibujo(String path) {
 		try {
 
+			//String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 			String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 
 			String fileInputPath = path;
-			String fileOutputPath = "Ortogonal.jpg";
+			String fileOutputPath = "src/com/Archivos/Ortogonal.jpg";
 
 			String tParam = "-Tjpg";
 			String tOParam = "-o";
@@ -199,5 +255,6 @@ public class ArchivoOrtogonal {
 		}
 
 	}
+	
 
 }

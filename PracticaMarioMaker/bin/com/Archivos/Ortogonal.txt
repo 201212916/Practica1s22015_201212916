@@ -1,0 +1,92 @@
+digraph G {
+	node [shape=record,width=.1,height=.1];
+	nodoTituloSuelo [label = "Matriz ortogonal"]
+	nodesep=.05;
+	rankdir=LR;
+	nodoR [label = "{<r>raiz|<s>}"];
+	nodoF1 [label = "{<f>Fila -1-|<s>}"];
+	nodo1MNull [label = "{null}"];
+	nodoF2 [label = "{<f>Fila -2-|<s>}"];
+	nodo2MNull [label = "{null}"];
+	nodoFNull [label = "{<n>null|<s>}"];
+	nodoC1 [label = "{<a>|<c1>Columna *1*|<s>}"];
+	nodoM1Null [label = "{<a>|<n>null|<s>}"];
+	nodoC2 [label = "{<a>|<c1>Columna *2*|<s>}"];
+	nodoM2Null [label = "{<a>|<n>null|<s>}"];
+	nodoC3 [label = "{<a>|<c1>Columna *3*|<s>}"];
+	nodoM3Null [label = "{<a>|<n>null|<s>}"];
+	nodoC4 [label = "{<a>|<c1>Columna *4*|<s>}"];
+	nodoM4Null [label = "{<a>|<n>null|<s>}"];
+	nodoCNull [label = "{null}"];
+	nodo11 [label = "{<a>|<o>1_1|<s>}"];
+	nodo12 [label = "{<a>|<o>1_2|<s>}"];
+	nodo13 [label = "{<a>|<o>1_3|<s>}"];
+	nodo14 [label = "{<a>|<o>1_4|<s>}"];
+	nodo21 [label = "{<a>|<o>2_1|<s>}"];
+	nodo22 [label = "{<a>|<o>2_2|<s>}"];
+	nodo23 [label = "{<a>|<o>2_3|<s>}"];
+	nodo24 [label = "{<a>|<o>2_4|<s>}"];
+	nodoR:r -> nodoF1:f [constraint=false];
+	nodoF1:f-> nodoF2:f [constraint=false];
+	nodoF2:f-> nodoFNull [constraint=false];
+	nodoR:s -> nodoC1:a;
+	nodoC1:s -> nodoC2:a;
+	nodoC2:s -> nodoC3:a;
+	nodoC3:s -> nodoC4:a;
+	nodoC4:s-> nodoCNull;
+	nodoF1:s -> nodo11:a;
+	nodo11:s -> nodo12:a;
+	nodo12:s -> nodo13:a;
+	nodo13:s -> nodo14:a;
+	nodoF2:s -> nodo21:a;
+	nodo21:s -> nodo22:a;
+	nodo22:s -> nodo23:a;
+	nodo23:s -> nodo24:a;
+	nodoC1:c -> nodo11:o [constraint = false];
+	nodo11:c -> nodo21:o  [constraint = false];
+	nodoC2:c -> nodo12:o [constraint = false];
+	nodo12:c -> nodo22:o  [constraint = false];
+	nodoC3:c -> nodo13:o [constraint = false];
+	nodo13:c -> nodo23:o  [constraint = false];
+	nodoC4:c -> nodo14:o [constraint = false];
+	nodo14:c -> nodo24:o  [constraint = false];
+	nodo14:s -> nodo1MNull;
+	nodo24:s -> nodo2MNull;
+	edge [color=white];
+	nodoFNull:s -> nodoM1Null:a;
+	edge [color=white];
+	nodoM1Null:s -> nodoM2Null:a
+	edge [color=black];
+	nodo21:c -> nodoM1Null [constraint=false];
+	edge [color=white];
+	nodoM2Null:s -> nodoM3Null:a
+	edge [color=black];
+	nodo22:c -> nodoM2Null [constraint=false];
+	edge [color=white];
+	nodoM3Null:s -> nodoM4Null:a
+	edge [color=black];
+	nodo23:c -> nodoM3Null [constraint=false];
+	nodo24:c -> nodoM4Null  [constraint=false] ;
+	nodoF2:f-> nodoF1:f [constraint=false];
+	nodoF1:f-> nodoR:r [constraint=false];
+	nodoC4:a -> nodoC3:s;
+	nodoC3:a -> nodoC2:s;
+	nodoC2:a -> nodoC1:s;
+	nodoC1:a-> nodoR:s;
+	nodo21:a -> nodoF2:a;
+	nodo24:a -> nodo23:s;
+	nodo23:a -> nodo22:s;
+	nodo22:a -> nodo21:s;
+	nodo11:a -> nodoF1:a;
+	nodo14:a -> nodo13:s;
+	nodo13:a -> nodo12:s;
+	nodo12:a -> nodo11:s;
+	nodo14:c -> nodoC4:o [constraint = false];
+	nodo24:o -> nodo14:c  [constraint = false];
+	nodo13:c -> nodoC3:o [constraint = false];
+	nodo23:o -> nodo13:c  [constraint = false];
+	nodo12:c -> nodoC2:o [constraint = false];
+	nodo22:o -> nodo12:c  [constraint = false];
+	nodo11:c -> nodoC1:o [constraint = false];
+	nodo21:o -> nodo11:c  [constraint = false];
+}

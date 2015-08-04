@@ -1,24 +1,0 @@
-digraph G {
-	nodesep=.05;
-	rankdir=LR;
-	node [shape=record,width=.1,height=.1];
-	nodoTituloSuelo [label = "Lista Suelo"]
-	nodoSuelo0 [label = "{Raiz |<s>}"];
-	nodoSuelo1 [label = "{<a>|* Suelo_1|<s>}"];
-	nodoSuelo2 [label = "{<a>|* Suelo_2|<s>}"];
-	nodoSuelo3 [label = "{<a>|* Suelo_3|<s>}"];
-	nodoSuelo4 [label = "{<a>|* Suelo_4|<s>}"];
-	nodoSuelo5 [label = "{<a>|* Suelo_5|<s>}"];
-	nodoNullSuelo [label = "<n>null"]
-	nodoSuelo0:s -> nodoSuelo1:a;
-	nodoSuelo1:s -> nodoSuelo2:a;
-	nodoSuelo2:s -> nodoSuelo3:a;
-	nodoSuelo3:s -> nodoSuelo4:a;
-	nodoSuelo4:s -> nodoSuelo5:a;
-	nodoSuelo5:a -> nodoSuelo4:s;
-	nodoSuelo4:a -> nodoSuelo3:s;
-	nodoSuelo3:a -> nodoSuelo2:s;
-	nodoSuelo2:a -> nodoSuelo1:s;
-	nodoSuelo1:a -> nodoSuelo0:s;
-	nodoSuelo5:s -> nodoNullSuelo:n;
-}

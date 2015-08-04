@@ -154,7 +154,7 @@ public class ListaD {
 		}
 	}
 
-	public void remove(int i) {
+	public Object remove(int i) {
 		try {
 			
 			NodoD dato = this.getNodo(i);
@@ -190,18 +190,22 @@ public class ListaD {
 			} else {
 				System.out.println("El nodo no existe");
 			}
+			
+			return dato.getDato();
 
 		} catch (Exception e) {
 			System.out.println("Error al remover");
+			return null;
 		}
 	}
 	
-	public void removePila(){
-		this.remove(this.getSize());
+	public Object removePila(){
+		return this.remove(this.getSize());
 	}
 	
-	public void removeCola(){
-		this.remove(1);
+	public Object removeCola(){
+		return this.remove(1);
 	}
+	
 	
 }

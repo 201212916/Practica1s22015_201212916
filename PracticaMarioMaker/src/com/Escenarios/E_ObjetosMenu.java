@@ -1,38 +1,98 @@
 package com.Escenarios;
 import com.Listas.*;
+import com.Reportes.*;
+import com.Main.*;
+import com.Pojos.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class E_ObjetosMenu extends javax.swing.JFrame {
 
-	public ListaO o;
-        public E_CreacionObjeto crearObjeto; 
-        public E_EditarObjeto editarObjeto;
-        public E_EditarJugador editarJugador;
-        
+    public static ListaO o;
+    public E_CreacionObjeto crearObjeto; 
+    public E_EditarObjeto editarObjeto;
+    public E_EditarJugador editarJugador;
+    public ArchivoListas archivoL;
+    public ArchivoOrtogonal archivoO;
+    public ArchivoImagen archivoI;
+    public CargaObjetos carga;
+    
         
     public E_ObjetosMenu() {
         initComponents();
+        
+        
+        ((JPanel)getContentPane()).setOpaque(false); 
+        ImageIcon uno=new ImageIcon(this.getClass().getResource("/com/Imagenes/fondo.jpg"));
+        JLabel fondo= new JLabel();
+        fondo.setIcon(uno);
+        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
+
+        
+        
+        
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (pantalla.width - 1100)/2;
-        System.out.println(width);
         setBounds(width, 5, 1100, 200);
         
+        setResizable(false);
         
         crearObjeto = new E_CreacionObjeto();
         editarObjeto = new E_EditarObjeto();
         editarJugador = new E_EditarJugador();
+
+        archivoI = new ArchivoImagen();
         o = new ListaO();
+        carga = new CargaObjetos();
+        carga.ejecutar();
         o.iniciarMatriz();
+
+        
+        archivoL = new ArchivoListas();
+        archivoO = new ArchivoOrtogonal(o);        
+        archivoL.generarArchivo();
+        archivoO.generarArchivo();
       
 //        jButton6.setSize(75, 75);
 //        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource(carga.getPojoPersonaje().getImagenPath())));
 
     }
+    
+    
+    public int validarCadena(String cadena){
+    	Pattern pat = Pattern.compile("[1-9]");
+        Matcher mat = pat.matcher(cadena);
+        if (mat.matches()) {
+        	return Integer.parseInt(cadena);
+        } else {
+        	return 201212916;
+        }
+    }
+    
+    
 
-    @SuppressWarnings("unchecked")
+    public ListaO getO() {
+		return o;
+	}
+
+
+	public void setO(ListaO o) {
+		this.o = o;
+	}
+
+
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -57,8 +117,12 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -66,7 +130,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
-        setBounds(new java.awt.Rectangle(0, 0, 75, 75));
+        setBounds(new java.awt.Rectangle(133, 5, 1100, 200));
         setResizable(false);
 
         jRadioButton1.setText("Modo Pila");
@@ -90,24 +154,44 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar fila");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar columna");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/goomba75.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/koopa75.png"))); // NOI18N
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/mario75.png"))); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/pared75.png"))); // NOI18N
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/moneda75.PNG"))); // NOI18N
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/vida75.png"))); // NOI18N
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/castillo75.png"))); // NOI18N
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/mario752.jpg"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/suelo75.png"))); // NOI18N
 
         jMenu1.setText("Archivo");
 
@@ -134,12 +218,36 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
+        jMenuItem9.setText("jMenuItem9");
+        jMenu2.add(jMenuItem9);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Reportes");
+
+        jMenuItem6.setText("Imagen Lista Objetos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Imagen Matriz Ortogonal");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
         jMenuBar1.add(jMenu3);
 
         jMenu6.setText("Vista");
+
+        jMenuItem8.setText("Resumen de objetos");
+        jMenu6.add(jMenuItem8);
+
         jMenuBar1.add(jMenu6);
 
         jMenu4.setText("Jugador");
@@ -253,12 +361,86 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        o.agregarFila();
+        if((o.getNumFilas()-1) < 9){
+            o.agregarFila();
+            archivoO.generarArchivo();
+        }else{
+            JOptionPane.showMessageDialog(null, "Numero maximo de filas es 9");   
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        o.agregarColumna();
+        if ((o.getNumColumnas()-1)<20){
+            o.agregarColumna();
+            archivoO.generarArchivo();
+        }else{
+            JOptionPane.showMessageDialog(null, "Numero maximo de columnas es 20");   
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        archivoI.abrirImagenLista();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        archivoI.abrirImagenOrtogonal();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+		
+		if (o.esVacioColumna() || o.esVacioFila()) {
+			JOptionPane.showMessageDialog(null, "Matriz ortogonal vacia");
+		} else {
+			String seleccion = JOptionPane.showInputDialog(null,
+					"Ingrese numero de fila", JOptionPane.QUESTION_MESSAGE);
+
+			int fila = this.validarCadena(seleccion);
+
+			if (fila != 201212916 && fila < o.getNumFilas()) {
+				o.eliminarFila(fila);
+				archivoO.generarArchivo();
+			} else {
+				JOptionPane.showMessageDialog(
+						null,
+						"Indice de fila invalido, indices validos: 1-" + (o.getNumFilas() - 1));
+			}
+
+		}
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+		
+    	if (o.esVacioColumna() || o.esVacioFila()) {
+			JOptionPane.showMessageDialog(null, "Matriz ortogonal vacia");
+		} else {
+			String seleccion = JOptionPane.showInputDialog(null, "Ingrese numero de Columna",
+					JOptionPane.QUESTION_MESSAGE);
+			
+			int columna = this.validarCadena(seleccion);
+                    if (columna != 201212916 && columna < o.getNumColumnas()){
+                            o.eliminarColumna(columna);
+                            archivoO.generarArchivo();
+                    }else{
+                            JOptionPane.showMessageDialog(null, "Indice de columna invalido, indices validos: 1-" + (o.getNumColumnas()-1));
+                    }
+		}
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        //carga un goomba
+    	if (carga.getTemporal().esVacio()){
+	        carga.getTemporal().agregarNodo(carga.getGoomba().removePila());
+	        archivoL.generarArchivo();
+    	}else{
+			JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
+    	}
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -286,6 +468,10 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables

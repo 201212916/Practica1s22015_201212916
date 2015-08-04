@@ -45,4 +45,7 @@ public class Objeto {
 		return "* " + this.getNombre();
 	}
 	
+	public String tod(){
+		return this.imagenPath;
+	}
 }

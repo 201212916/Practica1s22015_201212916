@@ -11,7 +11,7 @@ public class Personaje extends Objeto {
 		this.vida = 1;
 		this.monedas = 0;
 		this.setNombre(nombre);
-		this.setImagenPath("/com/Imagenes/mario.png");
+		this.setImagenPath("/com/Imagenes/50/mario50.png");
 	}
 
 	public String getNombreJ() {
