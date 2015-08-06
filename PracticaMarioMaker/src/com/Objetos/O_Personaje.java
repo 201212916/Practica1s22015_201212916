@@ -25,21 +25,21 @@ public class O_Personaje {
 		
 	}
 
-//	public void mover(){
-//
-//		if (this.x>=100 || this.dx>0){
-//			if (this.x <=o.getLimitefila() || this.dx<0){
-//					this.x += this.dx;
-//			}
-//		}
-//
-//		if (this.y>=100 || this.dy>0){		
-//			if (this.y <= o.getLimiteColumna() || this.dy<0){
-//				this.y += this.dy;
-//			}
-//		}
-//
-//	}
+	public void mover(){
+
+		if (this.x>=100 || this.dx>0){
+			if (this.x <=o.getLimitefila() || this.dx<0){
+					this.x += this.dx;
+			}
+		}
+
+		if (this.y>=100 || this.dy>0){		
+			if (this.y <= o.getLimiteColumna() || this.dy<0){
+				this.y += this.dy;
+			}
+		}
+
+	}
 
 	public int getX() {
 		return x;

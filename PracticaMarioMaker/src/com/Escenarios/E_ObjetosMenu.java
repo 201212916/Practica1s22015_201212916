@@ -3,9 +3,11 @@ import com.Listas.*;
 import com.Reportes.*;
 import com.Main.*;
 import com.Pojos.*;
-
+import com.Nodos.*;
+import com.Creacion.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -22,11 +24,16 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     public E_CreacionObjeto crearObjeto; 
     public E_EditarObjeto editarObjeto;
     public E_EditarJugador editarJugador;
+    public E_ResumenObjeto resumenObjeto;
+    public E_EliminarObjeto eliminarObjeto;
+    public E_Juego juego;
     public ArchivoListas archivoL;
     public ArchivoOrtogonal archivoO;
+    public ArchivoRecuperar archivoR;
+    public ArchivoRecuperarOrtogonal archivoRO;
     public ArchivoImagen archivoI;
     public CargaObjetos carga;
-    
+    public static CrearTablero c;
         
     public E_ObjetosMenu() {
         initComponents();
@@ -51,18 +58,24 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         crearObjeto = new E_CreacionObjeto();
         editarObjeto = new E_EditarObjeto();
         editarJugador = new E_EditarJugador();
-
+        juego = new E_Juego();
         archivoI = new ArchivoImagen();
         o = new ListaO();
         carga = new CargaObjetos();
         carga.ejecutar();
         o.iniciarMatriz();
-
-        
+        c = new CrearTablero();
+        resumenObjeto = new E_ResumenObjeto();
+        eliminarObjeto = new E_EliminarObjeto();
         archivoL = new ArchivoListas();
-        archivoO = new ArchivoOrtogonal(o);        
+        archivoO = new ArchivoOrtogonal(o);     
+        archivoR = new ArchivoRecuperar();
+        archivoRO = new ArchivoRecuperarOrtogonal();
         archivoL.generarArchivo();
         archivoO.generarArchivo();
+        
+        jRadioButton1.setSelected(true);
+        jRadioButton3.setSelected(true);
       
 //        jButton6.setSize(75, 75);
 //        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource(carga.getPojoPersonaje().getImagenPath())));
@@ -80,7 +93,65 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         }
     }
     
+    	public void limpiarArchivoTemporal(){
+		String file = "src/com/Archivos/Temporal.txt";
+		File f = new File(file);
+		BufferedWriter bw;
+		PrintWriter wr;
+
+		try {
+			FileWriter w = new FileWriter(f);
+			bw = new BufferedWriter(w);
+			wr = new PrintWriter(bw);
+			wr.write("");
+			wr.close();
+			bw.close();
+
+		} catch (IOException e) {
+			System.out.println("Hubo Error al escribir el archivoTemporal: "
+					+ e);
+		}
+
+	}
+        
+        public void eliminarItems(int fila, int columna){
+            String objmat = o.buscarNodo(fila, columna).getDato().toString();
+					String objel = c.obtenerObjeto(objmat);
+					String path = "/com/Imagenes/50/";
+					
+					switch(objel){
+					case "Goomba": 
+						path += "goomba50.png";
+						break;
+					case "Koopa" :
+						path += "koopa50.png";
+						break;
+					case "Suelo" : 
+						path += "suelo50.png";
+						break;
+					case "Pared" : 
+						path += "pared50.png";
+						break;
+					case "Moneda" : 
+						path += "moneda50.png";
+						break;
+					case "Hongo" : 
+						path += "vida50.png";
+						break;
+					case "Jugador:" : 
+						path += "mario50.png";
+						break;
+					case "Castillo" : 
+						path += "castillo50.png";
+						break;
+					}
+					
+						carga.getRecuperarOrtogonal().agregarNodo(objmat);
+						c.crearArchivoRecuperar(objel, columna*50, fila*50,path);
+						archivoRO.generarArchivo();	
+        
     
+        }
 
     public ListaO getO() {
 		return o;
@@ -111,6 +182,8 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -123,6 +196,8 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -134,8 +209,18 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         setResizable(false);
 
         jRadioButton1.setText("Modo Pila");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setText("Modo Cola");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Forma de sacar objetos");
 
@@ -175,6 +260,11 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/koopa75.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/mario75.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -184,18 +274,64 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/pared75.png"))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/moneda75.PNG"))); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/vida75.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/castillo75.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Imagenes/75/suelo75.png"))); // NOI18N
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton3.setText("Agregar objeto");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton4.setText("Eliminar objeto");
+        jRadioButton4.setFocusable(false);
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Archivo");
 
-        jMenuItem1.setText("d");
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Salir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -218,7 +354,12 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem9.setText("jMenuItem9");
+        jMenuItem9.setText("Eliminar");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
@@ -246,7 +387,28 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jMenu6.setText("Vista");
 
         jMenuItem8.setText("Resumen de objetos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem8);
+
+        jMenuItem10.setText("Objetos eliminados de listas");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenuItem11.setText("Objetos eliminados de matriz");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem11);
 
         jMenuBar1.add(jMenu6);
 
@@ -265,6 +427,11 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jMenu5.setText("Ayuda");
 
         jMenuItem4.setText("Creditos");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem4);
 
         jMenuBar1.add(jMenu5);
@@ -305,17 +472,21 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(249, Short.MAX_VALUE))
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
@@ -333,7 +504,12 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                             .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jRadioButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -353,6 +529,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        editarObjeto.ejecutar();
         editarObjeto.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -398,8 +575,16 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
 			int fila = this.validarCadena(seleccion);
 
 			if (fila != 201212916 && fila < o.getNumFilas()) {
+                            for(int i=1; i<o.getNumColumnas();i++){
+                                if(!o.buscarNodo(fila, i).getDato().equals("null")){
+                                    this.eliminarItems(fila, i);
+                                }
+                            }
 				o.eliminarFila(fila);
 				archivoO.generarArchivo();
+                                
+                                
+                                
 			} else {
 				JOptionPane.showMessageDialog(
 						null,
@@ -420,6 +605,11 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
 			
 			int columna = this.validarCadena(seleccion);
                     if (columna != 201212916 && columna < o.getNumColumnas()){
+                    	for(int i=1; i<o.getNumFilas();i++){
+                            if(!o.buscarNodo(i, columna).getDato().equals("null")){
+                                this.eliminarItems(i, columna);
+                            }
+                        }
                             o.eliminarColumna(columna);
                             archivoO.generarArchivo();
                     }else{
@@ -429,18 +619,248 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        //carga un goomba
+    	if(!carga.getGoomba().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getGoomba().getNodo(carga.getGoomba().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getGoomba().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getGoomba().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getGoomba().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+				JOptionPane.showMessageDialog(null, "Ya tiene un objeto Goomba seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Goombas esta vacia");            
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        //carga un goomba
-    	if (carga.getTemporal().esVacio()){
-	        carga.getTemporal().agregarNodo(carga.getGoomba().removePila());
-	        archivoL.generarArchivo();
+        //cargar el personaje
+    	if(!carga.getJugador().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getJugador().getNodo(carga.getJugador().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getJugador().removePila());
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getJugador().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getJugador().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Jugador seleccionado");
+	    	}
     	}else{
-			JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
-    	}
+                JOptionPane.showMessageDialog(null, "Solo se puede agregar un personaje");            
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.limpiarArchivoTemporal();
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        //carga de un koopa
+        if(!carga.getKoopa().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getKoopa().getNodo(carga.getKoopa().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getKoopa().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getKoopa().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getKoopa().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Koopa seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Koopas esta vacia");            
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        //Carga de una moneda
+        if(!carga.getMoneda().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getMoneda().getNodo(carga.getMoneda().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getMoneda().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getMoneda().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getMoneda().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Moneda seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Monedas esta vacia");            
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        //Cargar hongo vida
+        
+        if(!carga.getVida().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getVida().getNodo(carga.getVida().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getVida().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getVida().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getVida().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Hongo vida seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Hongo vida esta vacia");            
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        //carga de suelo
+        if(!carga.getSuelo().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getSuelo().getNodo(carga.getSuelo().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getSuelo().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getSuelo().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getSuelo().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Suelo seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Suelo esta vacia");            
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        //carga de pared
+        if(!carga.getPared().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if (jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getPared().getNodo(carga.getPared().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getPared().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getPared().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getPared().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Pared seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "La lista de Pared esta vacia");            
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        //carga de castillo
+        if(!carga.getCastillo().esVacio()){
+	    	if (carga.getTemporal().esVacio()){
+                    if(jRadioButton1.isSelected()){
+                        carga.getRecuperar().agregarNodo(carga.getCastillo().getNodo(carga.getCastillo().getSize()).getDato());
+		        carga.getTemporal().agregarNodo(carga.getCastillo().removePila());                        
+                    }else{
+                        carga.getRecuperar().agregarNodo(carga.getCastillo().getNodo(1).getDato());
+		        carga.getTemporal().agregarNodo(carga.getCastillo().removeCola());                        
+                    }
+                        archivoR.generarArchivo();
+		        archivoL.generarArchivo();
+	    	}else{
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Castillo seleccionado");
+	    	}
+    	}else{
+                JOptionPane.showMessageDialog(null, "Solo se puede agregar un castillo");            
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        if(jRadioButton1.isSelected()){
+            jRadioButton2.setSelected(false);
+            jRadioButton1.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        if(jRadioButton2.isSelected()){
+            jRadioButton1.setSelected(false);
+            jRadioButton2.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+            JOptionPane.showMessageDialog(null, "Realizado por: Pablo David Say Garcia \n Carne: 201212916");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    	resumenObjeto.actualizar();
+        resumenObjeto.show();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        eliminarObjeto.ejecutar();
+    	eliminarObjeto.show();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        archivoI.abrirImagenRecuperar();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        archivoI.abrirImagenRecuperarOrtogonal();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        if(jRadioButton3.isSelected()){
+            jRadioButton4.setSelected(false);
+            jRadioButton3.setSelected(true);
+            
+            jButton6.setEnabled(true);
+            jButton7.setEnabled(true);
+            jButton8.setEnabled(true);
+            jButton9.setEnabled(true);
+            jButton10.setEnabled(true);
+            jButton11.setEnabled(true);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+        }
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        if(jRadioButton4.isSelected()){
+            jRadioButton3.setSelected(false);
+            jRadioButton4.setSelected(true);
+            
+            jButton6.setEnabled(false);
+            jButton7.setEnabled(false);
+            jButton8.setEnabled(false);
+            jButton9.setEnabled(false);
+            jButton10.setEnabled(false);
+            jButton11.setEnabled(false);
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            
+        }
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -464,6 +884,8 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -474,5 +896,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    public javax.swing.JRadioButton jRadioButton3;
+    public javax.swing.JRadioButton jRadioButton4;
     // End of variables declaration//GEN-END:variables
 }

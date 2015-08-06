@@ -2,6 +2,7 @@ package com.Listas;
 import com.Main.*;
 import com.Nodos.*;
 import com.Reportes.*;
+import com.Pojos.*;
 
 public class ListaO {
 	
@@ -12,11 +13,12 @@ public class ListaO {
 	private NodoO abajo_;
 	private NodoO raiz;
 	private static int dibFila=0, dibColumna=0, limitefila=-50, limiteColumna=-50;
+	private Objeto objeto;
 	
 
 	public ListaO() {
 		
-		
+		this.objeto = new Objeto();
 		this.primero = null;
 		this.ultimo = null;
 		this.arriba_ = null;
@@ -124,28 +126,7 @@ public class ListaO {
 	}
 
 	public void eliminarFila(int fila){
-		
-//		try{
-//			int fila = this.getNumFilas() - 1;				
-//			
-//			
-//			for (int i = getNumColumnas()-1; i >= 0; i--) {
-//				
-//				NodoO fin = this.buscarNodo(fila , i);
-//				NodoO temporal = fin.getArriba();	
-//
-//				temporal.setAbajo(null);
-//				fin = null;
-//			}
-//			
-//			this.dibujarMatriz();
-//			
-//		}catch(Exception e){
-//			System.out.println("Error en metodo eliminarFila() " + e);
-//		}
-//		
-		
-	
+
 			
 			try{
 				int nFilas = this.getNumFilas()-1;
@@ -153,7 +134,7 @@ public class ListaO {
 				
 				if (nFilas == 1 && fila == 1){
 					raiz.setAbajo(null);
-					
+					                            this.dibFila--;
 				}else if (fila == 1 && nFilas >1) {
 
 					NodoO tr = buscarNodo(1, 0);
@@ -173,29 +154,31 @@ public class ListaO {
 					
 					raiz.setAbajo(tr.getAbajo());
 					tr.getAbajo().setArriba(raiz);				
-					
+					this.dibFila--;
 				}else if(fila == nFilas){
 					
 					for (int i = nColumnas; i >= 0; i--) {
 						
 						NodoO temporal = this.buscarNodo(fila, i);
-						NodoO ar = temporal.getArriba();
+						NodoO ar = this.buscarNodo(fila-1, i);
 						ar.setAbajo(null);
-						abajo_ = null;
+						abajo_ = ar;
 						//sig.setAnterior(ant);
 					}
+                                        this.dibFila--;
 				}else if(fila > 1 && fila < nFilas){
 					for (int i = nColumnas; i >= 0; i--) {
 						
 						NodoO temporal = this.buscarNodo(fila, i);
-						NodoO ar = temporal.getArriba();
-						NodoO ab = temporal.getAbajo();	
+						NodoO ar = this.buscarNodo(fila-1, i);
+						NodoO ab = this.buscarNodo(fila+1, i);	
 						
 						ar.setAbajo(ab);
 						ab.setArriba(ar);
 						
 
-					}					
+					}
+                                        this.dibFila--;
 				}else if (fila == 0){
 					System.out.println("No se puede eliminar el nodo Raiz");
 				}else{
@@ -218,7 +201,7 @@ public class ListaO {
 			
 			if (nColumnas == 1 && columna == 1){
 				raiz.setSiguiente(null);
-				
+				                            this.dibColumna--;
 			}else if (columna == 1 && nColumnas >1) {
 
 				NodoO tr = buscarNodo(0, 1);
@@ -234,17 +217,18 @@ public class ListaO {
 				
 				raiz.setSiguiente(tr.getSiguiente());
 				tr.getSiguiente().setAnterior(raiz);				
-				
+				                            this.dibColumna--;
 			}else if(columna == nColumnas){
 				
 				for (int i = nFilas; i >= 0; i--) {
 					
 					NodoO temporal = this.buscarNodo(i, columna);
-					NodoO ant = temporal.getAnterior();
+					NodoO ant = this.buscarNodo(i, columna-1);
 					ant.setSiguiente(null);
-					ultimo = null;
+					ultimo = ant;
 					//sig.setAnterior(ant);
 				}
+                                                            this.dibColumna--;
 			}else if(columna > 1 && columna < nColumnas){
 				for (int i = nFilas; i >= 0; i--) {
 					
@@ -254,7 +238,8 @@ public class ListaO {
 					
 					ant.setSiguiente(sig);
 					sig.setAnterior(ant);
-				}					
+				}
+                            this.dibColumna--;
 			}else if (columna == 0){
 				System.out.println("No se puede eliminar el nodo Raiz");
 			}else{
@@ -327,9 +312,8 @@ public class ListaO {
 
 				contador++;
 			}
-			
-
 			return temporal;
+
 
 			}
 
@@ -338,6 +322,8 @@ public class ListaO {
 		}
 
 	}
+
+	
 
 	public void insertarDato(Object dato, int fila, int columna) {
 		try {
@@ -464,7 +450,7 @@ public class ListaO {
 
 				NodoO nodoC = this.buscarNodo(limite-1, j);
 
-				NodoO nuevo = new NodoO(limite + "_" + j);
+				NodoO nuevo = new NodoO("null");
 
 				nodoC.setAbajo(nuevo);
 				nuevo.setArriba(nodoC);
@@ -498,7 +484,7 @@ public class ListaO {
 
 				NodoO nodoF = this.buscarNodo(i, limite - 1);
 
-				NodoO nuevo = new NodoO(i + "_" + limite);
+				NodoO nuevo = new NodoO("null");
 
 
 				nuevo.setArriba(nodo);

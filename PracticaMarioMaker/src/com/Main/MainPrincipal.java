@@ -12,7 +12,7 @@ public class MainPrincipal {
 		E_ObjetosMenu e = new E_ObjetosMenu();		
 		e.show();
 //		//MainListaO c = new MainListaO();
-		E_Escenario es = new E_Escenario(e.getO());
+		E_Escenario es = new E_Escenario(e.getO(), e);
 //		CargaObjetos c = new CargaObjetos();
 //		
 		

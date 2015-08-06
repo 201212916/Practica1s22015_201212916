@@ -5,6 +5,10 @@ public class Objeto {
 	private String nombre, imagenPath;
 	private int numero;
 	
+	public Objeto(){
+		
+	}
+	
 	public Objeto(int i){
 		this.nombre = "";
 		this.imagenPath = "";

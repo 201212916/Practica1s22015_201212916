@@ -1,11 +1,12 @@
 package com.Escenarios;
-
+import com.Reportes.*;
 import com.Main.CargaObjetos;
 
 public class E_EditarJugador extends javax.swing.JFrame {
 
     /* Variables globales*/
     private CargaObjetos carga;
+    private ArchivoListas archivoL;
     /* Fin de variables globales */
 
     public E_EditarJugador() {
@@ -13,6 +14,7 @@ public class E_EditarJugador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         carga = new CargaObjetos();
+        archivoL = new ArchivoListas();
         jTextField1.setText(carga.getPojoPersonaje().getNombreJ());
     }
 
@@ -82,7 +84,8 @@ public class E_EditarJugador extends javax.swing.JFrame {
             if(!nombre.equals("")){
                 carga.getPojoPersonaje().setNombreJ(nombre);
             }
-            carga.getJugador().verLista();
+         
+        archivoL.generarArchivo();
 
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -18,14 +18,14 @@ digraph G {
 	nodoC4 [label = "{<a>|<c1>Columna *4*|<s>}"];
 	nodoM4Null [label = "{<a>|<n>null|<s>}"];
 	nodoCNull [label = "{null}"];
-	nodo11 [label = "{<a>|<o>1_1|<s>}"];
-	nodo12 [label = "{<a>|<o>1_2|<s>}"];
-	nodo13 [label = "{<a>|<o>1_3|<s>}"];
-	nodo14 [label = "{<a>|<o>1_4|<s>}"];
-	nodo21 [label = "{<a>|<o>2_1|<s>}"];
-	nodo22 [label = "{<a>|<o>2_2|<s>}"];
-	nodo23 [label = "{<a>|<o>2_3|<s>}"];
-	nodo24 [label = "{<a>|<o>2_4|<s>}"];
+	nodo11 [label = "{<a>|<o>null|<s>}"];
+	nodo12 [label = "{<a>|<o>null|<s>}"];
+	nodo13 [label = "{<a>|<o>null|<s>}"];
+	nodo14 [label = "{<a>|<o>null|<s>}"];
+	nodo21 [label = "{<a>|<o>null|<s>}"];
+	nodo22 [label = "{<a>|<o>null|<s>}"];
+	nodo23 [label = "{<a>|<o>null|<s>}"];
+	nodo24 [label = "{<a>|<o>null|<s>}"];
 	nodoR:r -> nodoF1:f [constraint=false];
 	nodoF1:f-> nodoF2:f [constraint=false];
 	nodoF2:f-> nodoFNull [constraint=false];

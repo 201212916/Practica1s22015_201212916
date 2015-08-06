@@ -107,7 +107,7 @@ public class ArchivoListas {
 
 			rt.exec(cmd);
 
-			System.out.println("Cree el dibujo");
+			System.out.println("Cree el reporte Graphviz");
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

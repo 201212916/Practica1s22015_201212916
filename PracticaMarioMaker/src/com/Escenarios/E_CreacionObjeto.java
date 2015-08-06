@@ -4,6 +4,7 @@ import com.Main.CargaObjetos;
 import com.Pojos.*;
 import com.Reportes.ArchivoListas;
 import com.Reportes.ArchivoOrtogonal;
+import javax.swing.JOptionPane;
 
 public class E_CreacionObjeto extends javax.swing.JFrame {
 
@@ -41,7 +42,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Creacion de Objeto");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Goomba", "Koopa", "Moneda", "Hongo_Vida", "Suelo", "Pared" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Personaje", "Goomba", "Koopa", "Moneda", "Hongo_Vida", "Suelo", "Pared", "Castillo" }));
 
         jLabel2.setText("Tipo");
 
@@ -100,13 +101,21 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String item = this.jComboBox1.getSelectedItem().toString();
-        String nombre = item + "_";
+        String nombre =  item + "_";
         String complemento = jTextField1.getText();
 
-        System.out.println(carga.getJugador().getNodo(1).getDato());
-        System.out.println(carga.getCastillo().getNodo(1).getDato());
-
         switch (item) {
+            case "Personaje":
+                if(carga.getJugador().esVacio()){
+                   if(complemento.equals("")){
+                       carga.getJugador().agregarNodo(new Personaje(1, "Mario Bros"));
+                   }else{
+                       carga.getJugador().agregarNodo(new Personaje(1,complemento));
+                   }   
+                }else{
+                  JOptionPane.showMessageDialog(null, "Ya hay un personaje creado anteriormente");
+                }
+                break;
             case "Goomba":
                 if(complemento.equals("")){
                     carga.getGoomba().agregarNodo(new Goomba(carga.getGoomba().getSize() + 1, nombre + (carga.getGoomba().getSize() + 1)));
@@ -155,12 +164,22 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }
                 carga.getPared().verLista();
                 break;
+            case "Castillo":
+                if(carga.getCastillo().esVacio()){
+                   if(complemento.equals("")){
+                       carga.getCastillo().agregarNodo(new Castillo(1, nombre + "1"));
+                   }else{
+                       carga.getCastillo().agregarNodo(new Castillo(1,nombre +complemento));
+                   }   
+                }else{
+                  JOptionPane.showMessageDialog(null, "Ya hay un castillo creado anteriormente");
+                }
         }
         
         
 		
 		archivoL.generarArchivo();
-	//	archivoO.generarArchivo();
+
 		
         
         this.hide();

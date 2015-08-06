@@ -14,6 +14,8 @@ public class CargaObjetos {
 	private static Moneda pojoMoneda;
 	private static Vida pojoVida;
 	private static ListaD temporal;
+	private static ListaD recuperar;
+        private static ListaD recuperarOrtogonal;
 
 	
 	public CargaObjetos(){
@@ -26,11 +28,14 @@ public class CargaObjetos {
 		Castillo = new ListaD();
 		Jugador = new ListaD();
 		temporal = new ListaD();
+		recuperar = new ListaD();
+                recuperarOrtogonal = new ListaD();
 		this.ejecutar();
 	}
 	
 
 	public void ejecutar(){
+		
 		
 		this.CargaGoomba();
 		this.CargaKoopa();
@@ -279,6 +284,25 @@ public class CargaObjetos {
 	public void setTemporal(ListaD temporal) {
 		this.temporal = temporal;
 	}
+
+
+	public ListaD getRecuperar() {
+		return recuperar;
+	}
+
+
+	public void setRecuperar(ListaD recuperar) {
+		this.recuperar = recuperar;
+	}
+
+        public ListaD getRecuperarOrtogonal() {
+            return recuperarOrtogonal;
+        }
+
+        public void setRecuperarOrtogonal(ListaD recuperarOrtogonal) {
+            this.recuperarOrtogonal = recuperarOrtogonal;
+        }
+
 
 	
 }

@@ -125,7 +125,7 @@ digraph G {
 	nodoCastillo1:s -> nodoNullCastillo:n;
 	nodoTituloPersonaje [label = "Lista Personaje"]
 	nodoPersonaje0 [label = "{Raiz |<s>}"];
-	nodoPersonaje1 [label = "{<a>|Jugador: Player 1 Personaje: Mario Bros|<s>}"];
+	nodoPersonaje1 [label = "{<a>|* Jugador: Player 23456 Personaje: Mario Bros|<s>}"];
 	nodoNullPersonaje [label = "<n>null"]
 	nodoPersonaje0:s -> nodoPersonaje1:a;
 	nodoPersonaje1:a -> nodoPersonaje0:s;

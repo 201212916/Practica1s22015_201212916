@@ -27,5 +27,23 @@ public class ArchivoImagen {
 		     ex.printStackTrace();
 		}	
 	}
+        
+        public void abrirImagenRecuperar(){
+		try {
+		     File path = new File ("src/com/Archivos/Recuperar.jpg");
+		     Desktop.getDesktop().open(path);
+		}catch (IOException ex) {
+		     ex.printStackTrace();
+		}	
+	}
+        
+        public void abrirImagenRecuperarOrtogonal(){
+		try {
+		     File path = new File ("src/com/Archivos/RecuperarOrtogonal.jpg");
+		     Desktop.getDesktop().open(path);
+		}catch (IOException ex) {
+		     ex.printStackTrace();
+		}	
+	}
 	
 }

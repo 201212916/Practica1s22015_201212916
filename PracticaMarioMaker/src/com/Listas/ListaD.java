@@ -1,12 +1,15 @@
 package com.Listas;
 
 import com.Nodos.*;
+import com.Pojos.*;
 
 public class ListaD {
 
 	private NodoD primero, ultimo;
+	public Objeto objeto;
 
 	public ListaD() {
+		objeto = new Objeto();
 		this.primero = null;
 		this.ultimo = null;
 	}
@@ -16,7 +19,7 @@ public class ListaD {
 	}
 
 	public void agregarNodo(Object dato) {
-
+		
 		try {
 
 			NodoD nodo = new NodoD(dato);
