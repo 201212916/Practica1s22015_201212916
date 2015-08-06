@@ -1,0 +1,12 @@
+digraph G {
+	nodesep=.05;
+	rankdir=LR;
+	node [shape=record,width=.1,height=.1];
+	nodoTituloRecuperar [label = "Lista Recuperar"]
+	nodoRecuperar0 [label = "{Raiz |<s>}"];
+	nodoRecuperar1 [label = "{<a>|* Jugador: Player 1 Personaje: Mario Bros|<s>}"];
+	nodoNullRecuperar [label = "<n>null"]
+	nodoRecuperar0:s -> nodoRecuperar1:a;
+	nodoRecuperar1:a -> nodoRecuperar0:s;
+	nodoRecuperar1:s -> nodoNullRecuperar:n;
+}
