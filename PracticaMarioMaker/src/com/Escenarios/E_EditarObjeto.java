@@ -40,6 +40,7 @@ public class E_EditarObjeto extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,13 @@ public class E_EditarObjeto extends javax.swing.JFrame {
 
         jTextField1.setText(" ");
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,15 +100,18 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox1, 0, 97, Short.MAX_VALUE)
                                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,9 +130,11 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,7 +142,7 @@ public class E_EditarObjeto extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String item = this.jComboBox1.getSelectedItem().toString();
-
+        
         switch (item) {
             case "Personaje":
             jTextField1.setText("");
@@ -139,7 +152,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getJugador().getSize(); i++){
                     jComboBox2.addItem(i + " " + jugador[2]);
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -150,7 +165,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getGoomba().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getGoomba().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -162,7 +179,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getKoopa().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getKoopa().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -174,7 +193,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getMoneda().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getMoneda().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -186,7 +207,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getVida().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getVida().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -198,7 +221,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getSuelo().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getSuelo().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -210,7 +235,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getPared().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getPared().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -222,7 +249,9 @@ public class E_EditarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getCastillo().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getCastillo().getNodo(i).getDato().toString());
                 }
+                jButton1.setEnabled(true);
             }else{
+                jButton1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No hay items de este objeto");
             }
             break;
@@ -287,9 +316,14 @@ public class E_EditarObjeto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.hide();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

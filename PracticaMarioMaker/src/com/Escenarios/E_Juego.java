@@ -69,7 +69,7 @@ public class E_Juego extends javax.swing.JFrame implements Runnable {
             min++;
         }
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(E_Juego.class.getName()).log(Level.SEVERE, null, ex);
             }

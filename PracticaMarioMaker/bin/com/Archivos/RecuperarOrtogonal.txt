@@ -4,12 +4,21 @@ digraph G {
 	node [shape=record,width=.1,height=.1];
 	nodoTituloRecuperar_Ortogonal [label = "Lista Recuperar_Ortogonal"]
 	nodoRecuperar_Ortogonal0 [label = "{Raiz |<s>}"];
-	nodoRecuperar_Ortogonal1 [label = "{<a>|* Koopa_5|<s>}"];
-	nodoRecuperar_Ortogonal2 [label = "{<a>|* Moneda_5|<s>}"];
+	nodoRecuperar_Ortogonal1 [label = "{<a>|* Castillo_1|<s>}"];
+	nodoRecuperar_Ortogonal2 [label = "{<a>|* Castillo_1|<s>}"];
+	nodoRecuperar_Ortogonal3 [label = "{<a>|* Pared_5|<s>}"];
+	nodoRecuperar_Ortogonal4 [label = "{<a>|* Hongo_Vida_5|<s>}"];
+	nodoRecuperar_Ortogonal5 [label = "{<a>|* Hongo_Vida_4|<s>}"];
 	nodoNullRecuperar_Ortogonal [label = "<n>null"]
 	nodoRecuperar_Ortogonal0:s -> nodoRecuperar_Ortogonal1:a;
 	nodoRecuperar_Ortogonal1:s -> nodoRecuperar_Ortogonal2:a;
+	nodoRecuperar_Ortogonal2:s -> nodoRecuperar_Ortogonal3:a;
+	nodoRecuperar_Ortogonal3:s -> nodoRecuperar_Ortogonal4:a;
+	nodoRecuperar_Ortogonal4:s -> nodoRecuperar_Ortogonal5:a;
+	nodoRecuperar_Ortogonal5:a -> nodoRecuperar_Ortogonal4:s;
+	nodoRecuperar_Ortogonal4:a -> nodoRecuperar_Ortogonal3:s;
+	nodoRecuperar_Ortogonal3:a -> nodoRecuperar_Ortogonal2:s;
 	nodoRecuperar_Ortogonal2:a -> nodoRecuperar_Ortogonal1:s;
 	nodoRecuperar_Ortogonal1:a -> nodoRecuperar_Ortogonal0:s;
-	nodoRecuperar_Ortogonal2:s -> nodoNullRecuperar_Ortogonal:n;
+	nodoRecuperar_Ortogonal5:s -> nodoNullRecuperar_Ortogonal:n;
 }

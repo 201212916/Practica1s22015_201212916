@@ -93,6 +93,15 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         }
     }
     
+    public int validarCadena2(String cadena){
+    	
+        try{
+            return Integer.parseInt(cadena);
+        }catch(Exception e){
+            return 201212916;
+        }
+    }
+    
     	public void limpiarArchivoTemporal(){
 		String file = "src/com/Archivos/Temporal.txt";
 		File f = new File(file);
@@ -203,7 +212,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menu");
         setBounds(new java.awt.Rectangle(133, 5, 1100, 200));
         setResizable(false);
@@ -603,7 +612,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
 			String seleccion = JOptionPane.showInputDialog(null, "Ingrese numero de Columna",
 					JOptionPane.QUESTION_MESSAGE);
 			
-			int columna = this.validarCadena(seleccion);
+			int columna = this.validarCadena2(seleccion);
                     if (columna != 201212916 && columna < o.getNumColumnas()){
                     	for(int i=1; i<o.getNumFilas();i++){
                             if(!o.buscarNodo(i, columna).getDato().equals("null")){
@@ -632,7 +641,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-				JOptionPane.showMessageDialog(null, "Ya tiene un objeto Goomba seleccionado");
+				JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Goombas esta vacia");            
@@ -654,7 +663,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Jugador seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "Solo se puede agregar un personaje");            
@@ -680,7 +689,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Koopa seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Koopas esta vacia");            
@@ -701,7 +710,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Moneda seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Monedas esta vacia");            
@@ -723,7 +732,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Hongo vida seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Hongo vida esta vacia");            
@@ -744,7 +753,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Suelo seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Suelo esta vacia");            
@@ -765,7 +774,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Pared seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "La lista de Pared esta vacia");            
@@ -786,7 +795,7 @@ public class E_ObjetosMenu extends javax.swing.JFrame {
                         archivoR.generarArchivo();
 		        archivoL.generarArchivo();
 	    	}else{
-                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto Castillo seleccionado");
+                    JOptionPane.showMessageDialog(null, "Ya tiene un objeto seleccionado");
 	    	}
     	}else{
                 JOptionPane.showMessageDialog(null, "Solo se puede agregar un castillo");            

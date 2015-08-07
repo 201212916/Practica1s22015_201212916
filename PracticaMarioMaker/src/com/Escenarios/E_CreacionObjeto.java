@@ -34,6 +34,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Creacion de Objeto");
@@ -55,27 +56,34 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, 0, 97, Short.MAX_VALUE)
+                                .addComponent(jTextField1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, 97, Short.MAX_VALUE)
-                                    .addComponent(jTextField1))))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,9 +99,11 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jButton1)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +124,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                    }   
                 }else{
                   JOptionPane.showMessageDialog(null, "Ya hay un personaje creado anteriormente");
+                  jButton1.setEnabled(false);
                 }
                 break;
             case "Goomba":
@@ -122,7 +133,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getGoomba().agregarNodo(new Goomba(carga.getGoomba().getSize() + 1, nombre + complemento));
                 }
-                carga.getGoomba().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Koopa":
                 if(complemento.equals("")){
@@ -130,7 +141,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getKoopa().agregarNodo(new Koopa(carga.getKoopa().getSize() + 1, nombre + complemento));
                 }
-                carga.getKoopa().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Moneda":
                 if(complemento.equals("")){
@@ -138,7 +149,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getMoneda().agregarNodo(new Moneda(carga.getMoneda().getSize() + 1, nombre + complemento));
                 }
-                carga.getMoneda().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Hongo_Vida":
                 if(complemento.equals("")){
@@ -146,7 +157,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getVida().agregarNodo(new Vida(carga.getVida().getSize() + 1, nombre + complemento));
                 }
-                carga.getVida().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Suelo":
                 if(complemento.equals("")){
@@ -154,7 +165,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getSuelo().agregarNodo(new Suelo(carga.getSuelo().getSize() + 1, nombre + complemento));
                 }
-                carga.getSuelo().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Pared":
                 if(complemento.equals("")){
@@ -162,7 +173,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                 }else{
                     carga.getPared().agregarNodo(new Pared(carga.getPared().getSize() + 1, nombre + complemento));
                 }
-                carga.getPared().verLista();
+                jButton1.setEnabled(true);
                 break;
             case "Castillo":
                 if(carga.getCastillo().esVacio()){
@@ -173,6 +184,7 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
                    }   
                 }else{
                   JOptionPane.showMessageDialog(null, "Ya hay un castillo creado anteriormente");
+                  jButton1.setEnabled(false);
                 }
         }
         
@@ -187,8 +199,13 @@ public class E_CreacionObjeto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.hide();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

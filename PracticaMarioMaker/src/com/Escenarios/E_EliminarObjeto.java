@@ -38,6 +38,7 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,14 +63,17 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +86,13 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, 97, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +108,9 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -171,8 +183,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
 	                for(int i = 1; i<=carga.getJugador().getSize(); i++){
 	                    jComboBox2.addItem(i + " " + jugador[2]);   
 	                }
+                        jButton1.setEnabled(true);
                 }else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Goomba":
@@ -181,8 +195,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getGoomba().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getGoomba().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Koopa":
@@ -191,8 +207,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getKoopa().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getKoopa().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Moneda":
@@ -201,8 +219,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getMoneda().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getMoneda().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Hongo_Vida":
@@ -211,8 +231,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getVida().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getVida().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Suelo":
@@ -221,8 +243,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getSuelo().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getSuelo().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Pared":
@@ -231,8 +255,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getPared().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getPared().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
             case "Castillo":
@@ -241,8 +267,10 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
                 for(int i = 1; i<=carga.getCastillo().getSize(); i++){
                     jComboBox2.addItem(i + " " + carga.getCastillo().getNodo(i).getDato().toString());   
                 }
+                jButton1.setEnabled(true);
             	}else{
                 	JOptionPane.showMessageDialog(null, "No hay items de este objeto");
+                        jButton1.setEnabled(false);
                 }
             break;
         }
@@ -253,11 +281,16 @@ public class E_EliminarObjeto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.hide();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

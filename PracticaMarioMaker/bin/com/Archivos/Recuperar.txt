@@ -4,9 +4,21 @@ digraph G {
 	node [shape=record,width=.1,height=.1];
 	nodoTituloRecuperar [label = "Lista Recuperar"]
 	nodoRecuperar0 [label = "{Raiz |<s>}"];
-	nodoRecuperar1 [label = "{<a>|* Jugador: Player 1 Personaje: Mario Bros|<s>}"];
+	nodoRecuperar1 [label = "{<a>|* Pared_5|<s>}"];
+	nodoRecuperar2 [label = "{<a>|* Castillo_1|<s>}"];
+	nodoRecuperar3 [label = "{<a>|* Castillo_1|<s>}"];
+	nodoRecuperar4 [label = "{<a>|* Hongo_Vida_5|<s>}"];
+	nodoRecuperar5 [label = "{<a>|* Hongo_Vida_4|<s>}"];
 	nodoNullRecuperar [label = "<n>null"]
 	nodoRecuperar0:s -> nodoRecuperar1:a;
+	nodoRecuperar1:s -> nodoRecuperar2:a;
+	nodoRecuperar2:s -> nodoRecuperar3:a;
+	nodoRecuperar3:s -> nodoRecuperar4:a;
+	nodoRecuperar4:s -> nodoRecuperar5:a;
+	nodoRecuperar5:a -> nodoRecuperar4:s;
+	nodoRecuperar4:a -> nodoRecuperar3:s;
+	nodoRecuperar3:a -> nodoRecuperar2:s;
+	nodoRecuperar2:a -> nodoRecuperar1:s;
 	nodoRecuperar1:a -> nodoRecuperar0:s;
-	nodoRecuperar1:s -> nodoNullRecuperar:n;
+	nodoRecuperar5:s -> nodoNullRecuperar:n;
 }

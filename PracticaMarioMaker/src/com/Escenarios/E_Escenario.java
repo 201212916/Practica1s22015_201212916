@@ -68,7 +68,7 @@ public class E_Escenario extends JFrame implements MouseListener {
 
 		
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (pantalla.width - 1100)/2;
+                int width = (pantalla.width - 1100)/2;
         
 
 		setTitle("Escenario");
