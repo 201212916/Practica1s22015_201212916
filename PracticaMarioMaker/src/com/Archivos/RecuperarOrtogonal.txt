@@ -1,15 +1,0 @@
-digraph G {
-	nodesep=.05;
-	rankdir=LR;
-	node [shape=record,width=.1,height=.1];
-	nodoTituloRecuperar_Ortogonal [label = "Lista Recuperar_Ortogonal"]
-	nodoRecuperar_Ortogonal0 [label = "{Raiz |<s>}"];
-	nodoRecuperar_Ortogonal1 [label = "{<a>|* Koopa_5|<s>}"];
-	nodoRecuperar_Ortogonal2 [label = "{<a>|* Moneda_5|<s>}"];
-	nodoNullRecuperar_Ortogonal [label = "<n>null"]
-	nodoRecuperar_Ortogonal0:s -> nodoRecuperar_Ortogonal1:a;
-	nodoRecuperar_Ortogonal1:s -> nodoRecuperar_Ortogonal2:a;
-	nodoRecuperar_Ortogonal2:a -> nodoRecuperar_Ortogonal1:s;
-	nodoRecuperar_Ortogonal1:a -> nodoRecuperar_Ortogonal0:s;
-	nodoRecuperar_Ortogonal2:s -> nodoNullRecuperar_Ortogonal:n;
-}

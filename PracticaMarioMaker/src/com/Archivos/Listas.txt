@@ -1,133 +1,0 @@
-digraph G {
-	nodesep=.05;
-	rankdir=LR;
-	node [shape=record,width=.1,height=.1];
-	nodoTituloSuelo [label = "Lista Suelo"]
-	nodoSuelo0 [label = "{Raiz |<s>}"];
-	nodoSuelo1 [label = "{<a>|* Suelo_1|<s>}"];
-	nodoSuelo2 [label = "{<a>|* Suelo_2|<s>}"];
-	nodoSuelo3 [label = "{<a>|* Suelo_3|<s>}"];
-	nodoSuelo4 [label = "{<a>|* Suelo_4|<s>}"];
-	nodoSuelo5 [label = "{<a>|* Suelo_5|<s>}"];
-	nodoNullSuelo [label = "<n>null"]
-	nodoSuelo0:s -> nodoSuelo1:a;
-	nodoSuelo1:s -> nodoSuelo2:a;
-	nodoSuelo2:s -> nodoSuelo3:a;
-	nodoSuelo3:s -> nodoSuelo4:a;
-	nodoSuelo4:s -> nodoSuelo5:a;
-	nodoSuelo5:a -> nodoSuelo4:s;
-	nodoSuelo4:a -> nodoSuelo3:s;
-	nodoSuelo3:a -> nodoSuelo2:s;
-	nodoSuelo2:a -> nodoSuelo1:s;
-	nodoSuelo1:a -> nodoSuelo0:s;
-	nodoSuelo5:s -> nodoNullSuelo:n;
-	nodoTituloPared [label = "Lista Pared"]
-	nodoPared0 [label = "{Raiz |<s>}"];
-	nodoPared1 [label = "{<a>|* Pared_1|<s>}"];
-	nodoPared2 [label = "{<a>|* Pared_2|<s>}"];
-	nodoPared3 [label = "{<a>|* Pared_3|<s>}"];
-	nodoPared4 [label = "{<a>|* Pared_4|<s>}"];
-	nodoPared5 [label = "{<a>|* Pared_5|<s>}"];
-	nodoNullPared [label = "<n>null"]
-	nodoPared0:s -> nodoPared1:a;
-	nodoPared1:s -> nodoPared2:a;
-	nodoPared2:s -> nodoPared3:a;
-	nodoPared3:s -> nodoPared4:a;
-	nodoPared4:s -> nodoPared5:a;
-	nodoPared5:a -> nodoPared4:s;
-	nodoPared4:a -> nodoPared3:s;
-	nodoPared3:a -> nodoPared2:s;
-	nodoPared2:a -> nodoPared1:s;
-	nodoPared1:a -> nodoPared0:s;
-	nodoPared5:s -> nodoNullPared:n;
-	nodoTituloVida [label = "Lista Vida"]
-	nodoVida0 [label = "{Raiz |<s>}"];
-	nodoVida1 [label = "{<a>|* Hongo_Vida_1|<s>}"];
-	nodoVida2 [label = "{<a>|* Hongo_Vida_2|<s>}"];
-	nodoVida3 [label = "{<a>|* Hongo_Vida_3|<s>}"];
-	nodoVida4 [label = "{<a>|* Hongo_Vida_4|<s>}"];
-	nodoVida5 [label = "{<a>|* Hongo_Vida_5|<s>}"];
-	nodoNullVida [label = "<n>null"]
-	nodoVida0:s -> nodoVida1:a;
-	nodoVida1:s -> nodoVida2:a;
-	nodoVida2:s -> nodoVida3:a;
-	nodoVida3:s -> nodoVida4:a;
-	nodoVida4:s -> nodoVida5:a;
-	nodoVida5:a -> nodoVida4:s;
-	nodoVida4:a -> nodoVida3:s;
-	nodoVida3:a -> nodoVida2:s;
-	nodoVida2:a -> nodoVida1:s;
-	nodoVida1:a -> nodoVida0:s;
-	nodoVida5:s -> nodoNullVida:n;
-	nodoTituloMoneda [label = "Lista Moneda"]
-	nodoMoneda0 [label = "{Raiz |<s>}"];
-	nodoMoneda1 [label = "{<a>|* Moneda_1|<s>}"];
-	nodoMoneda2 [label = "{<a>|* Moneda_2|<s>}"];
-	nodoMoneda3 [label = "{<a>|* Moneda_3|<s>}"];
-	nodoMoneda4 [label = "{<a>|* Moneda_4|<s>}"];
-	nodoMoneda5 [label = "{<a>|* Moneda_5|<s>}"];
-	nodoNullMoneda [label = "<n>null"]
-	nodoMoneda0:s -> nodoMoneda1:a;
-	nodoMoneda1:s -> nodoMoneda2:a;
-	nodoMoneda2:s -> nodoMoneda3:a;
-	nodoMoneda3:s -> nodoMoneda4:a;
-	nodoMoneda4:s -> nodoMoneda5:a;
-	nodoMoneda5:a -> nodoMoneda4:s;
-	nodoMoneda4:a -> nodoMoneda3:s;
-	nodoMoneda3:a -> nodoMoneda2:s;
-	nodoMoneda2:a -> nodoMoneda1:s;
-	nodoMoneda1:a -> nodoMoneda0:s;
-	nodoMoneda5:s -> nodoNullMoneda:n;
-	nodoTituloKoopa [label = "Lista Koopa"]
-	nodoKoopa0 [label = "{Raiz |<s>}"];
-	nodoKoopa1 [label = "{<a>|* Koopa_1|<s>}"];
-	nodoKoopa2 [label = "{<a>|* Koopa_2|<s>}"];
-	nodoKoopa3 [label = "{<a>|* Koopa_3|<s>}"];
-	nodoKoopa4 [label = "{<a>|* Koopa_4|<s>}"];
-	nodoKoopa5 [label = "{<a>|* Koopa_5|<s>}"];
-	nodoNullKoopa [label = "<n>null"]
-	nodoKoopa0:s -> nodoKoopa1:a;
-	nodoKoopa1:s -> nodoKoopa2:a;
-	nodoKoopa2:s -> nodoKoopa3:a;
-	nodoKoopa3:s -> nodoKoopa4:a;
-	nodoKoopa4:s -> nodoKoopa5:a;
-	nodoKoopa5:a -> nodoKoopa4:s;
-	nodoKoopa4:a -> nodoKoopa3:s;
-	nodoKoopa3:a -> nodoKoopa2:s;
-	nodoKoopa2:a -> nodoKoopa1:s;
-	nodoKoopa1:a -> nodoKoopa0:s;
-	nodoKoopa5:s -> nodoNullKoopa:n;
-	nodoTituloGoomba [label = "Lista Goomba"]
-	nodoGoomba0 [label = "{Raiz |<s>}"];
-	nodoGoomba1 [label = "{<a>|* Goomba_1|<s>}"];
-	nodoGoomba2 [label = "{<a>|* Goomba_2|<s>}"];
-	nodoGoomba3 [label = "{<a>|* Goomba_3|<s>}"];
-	nodoGoomba4 [label = "{<a>|* Goomba_4|<s>}"];
-	nodoGoomba5 [label = "{<a>|* Goomba_5|<s>}"];
-	nodoNullGoomba [label = "<n>null"]
-	nodoGoomba0:s -> nodoGoomba1:a;
-	nodoGoomba1:s -> nodoGoomba2:a;
-	nodoGoomba2:s -> nodoGoomba3:a;
-	nodoGoomba3:s -> nodoGoomba4:a;
-	nodoGoomba4:s -> nodoGoomba5:a;
-	nodoGoomba5:a -> nodoGoomba4:s;
-	nodoGoomba4:a -> nodoGoomba3:s;
-	nodoGoomba3:a -> nodoGoomba2:s;
-	nodoGoomba2:a -> nodoGoomba1:s;
-	nodoGoomba1:a -> nodoGoomba0:s;
-	nodoGoomba5:s -> nodoNullGoomba:n;
-	nodoTituloCastillo [label = "Lista Castillo"]
-	nodoCastillo0 [label = "{Raiz |<s>}"];
-	nodoCastillo1 [label = "{<a>|* Castillo_1|<s>}"];
-	nodoNullCastillo [label = "<n>null"]
-	nodoCastillo0:s -> nodoCastillo1:a;
-	nodoCastillo1:a -> nodoCastillo0:s;
-	nodoCastillo1:s -> nodoNullCastillo:n;
-	nodoTituloPersonaje [label = "Lista Personaje"]
-	nodoPersonaje0 [label = "{Raiz |<s>}"];
-	nodoPersonaje1 [label = "{<a>|* Jugador: Player 23456 Personaje: Mario Bros|<s>}"];
-	nodoNullPersonaje [label = "<n>null"]
-	nodoPersonaje0:s -> nodoPersonaje1:a;
-	nodoPersonaje1:a -> nodoPersonaje0:s;
-	nodoPersonaje1:s -> nodoNullPersonaje:n;
-}
